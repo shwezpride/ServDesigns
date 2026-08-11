@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ServDesigns — Making Invisible Systems Visible</title>
-<meta name="description" content="ServDesigns is a service and systems design studio in Edinburgh, part of a broader design and software consulting venture. We help small and mid-sized organisations uncover what's really happening beneath the surface and design better ways to work.">
+<title>ServDesigns — We Make Invisible Systems Visible</title>
+<meta name="description" content="ServDesigns helps growing businesses see what's really happening beneath a broken experience, design what needs to change, and build the solution — connecting design, business, technology and AI instead of treating them as separate problems. Based in Edinburgh.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@
     gap:10px;
     margin-bottom:20px;
   }
-  .kicker .dash{width:22px;height:1px;background:var(--accent);display:inline-block;}
+  .kicker .dash{width:22px;height:1px;background:var(--accent);display:inline-block;flex:none;}
 
   .btn{
     display:inline-flex;
@@ -115,18 +115,29 @@
   .menu-toggle span{width:22px;height:2px;background:var(--ink);display:block;}
 
   /* HERO */
-  .hero{padding:168px 0 90px;position:relative;overflow:hidden;}
+  .hero{padding:160px 0 80px;position:relative;overflow:hidden;}
   .hero-grid{
     display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;position:relative;
   }
-  .hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.02;}
-  .hero-sub{margin-top:28px;font-size:17.5px;color:var(--muted);max-width:520px;}
+  .hero-manifesto{
+    font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--accent);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .hero-manifesto .dash{width:22px;height:1px;background:var(--accent);display:inline-block;flex:none;}
+  .hero h1{font-size:clamp(36px,4.8vw,60px);line-height:1.03;}
+  .hero-sub{margin-top:24px;font-size:17px;color:var(--muted);max-width:530px;}
+  .hero-arch{
+    margin-top:26px;font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;
+    letter-spacing:.05em;color:var(--ink);font-weight:700;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .hero-arch span.step{color:var(--ink);}
+  .hero-arch span.sep{color:var(--line);}
   .hero-meta{
-    margin-top:36px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);
+    margin-top:34px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);
     text-transform:uppercase;letter-spacing:.05em;display:flex;gap:14px;flex-wrap:wrap;
   }
   .hero-meta span:not(:last-child)::after{content:'·';margin-left:14px;color:var(--line);}
-  .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
   .hero-canvas-wrap{
     position:relative;aspect-ratio:1/1;border:1px solid var(--line);background:var(--paper-2);
   }
@@ -152,13 +163,53 @@
   @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
   section{padding:100px 0;position:relative;}
-  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head{max-width:680px;margin-bottom:52px;}
   .section-head h2{font-size:clamp(26px,3.2vw,38px);line-height:1.18;}
   .section-head p{margin-top:16px;font-size:16px;color:var(--muted);}
 
-  /* PROBLEM / DIAGRAM */
-  .diagram-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
-  .diagram-pane{padding:36px;position:relative;}
+  /* PROBLEM */
+  .lead-statement{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,34px);
+    line-height:1.3;max-width:900px;margin-bottom:36px;
+  }
+  .lead-statement em{font-style:normal;color:var(--accent);}
+  .reframe-block{max-width:640px;margin-bottom:56px;}
+  .reframe-block .rf-lead{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
+  .reframe-list{display:flex;flex-direction:column;gap:12px;margin-bottom:18px;}
+  .reframe-list p{font-size:15.5px;color:var(--muted);padding-left:22px;position:relative;}
+  .reframe-list p::before{content:'→';position:absolute;left:0;color:var(--accent);font-family:'Space Mono',monospace;}
+  .reframe-close{font-size:16px;font-weight:600;color:var(--ink);}
+
+  /* STAGE DIAGRAM (frontstage / backstage) */
+  .stage-diagram{border:1px solid var(--line);margin-bottom:24px;}
+  .stage-visible{padding:32px 36px;background:var(--paper);}
+  .stage-label{
+    font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);display:block;margin-bottom:20px;
+  }
+  .stage-flow{display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
+  .stage-flow span.node{
+    font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;
+    border:1px solid var(--line);padding:9px 16px;color:var(--ink);background:var(--paper-2);
+  }
+  .stage-flow span.flow-arrow{color:var(--line);font-family:'Space Mono',monospace;}
+  .stage-connector{
+    text-align:center;padding:10px 0;background:var(--paper-2);
+    font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--muted);
+    text-transform:uppercase;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
+  }
+  .stage-invisible{padding:32px 36px;background:var(--ink);}
+  .stage-invisible .stage-label{color:var(--signal);}
+  .stage-cluster{display:flex;flex-wrap:wrap;gap:9px;}
+  .stage-cluster span.node{
+    font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;
+    border:1px solid rgba(244,242,234,.25);padding:8px 14px;color:var(--paper);
+  }
+  .stage-cluster span.node.hl{border-color:var(--signal);color:var(--signal);}
+
+  /* BEFORE / AFTER DIAGRAM */
+  .diagram-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-top:none;}
+  .diagram-pane{padding:32px 36px;position:relative;}
   .diagram-pane:first-child{border-right:1px solid var(--line);}
   .diagram-pane .tag{
     font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
@@ -166,11 +217,35 @@
   }
   .diagram-pane.after .tag{color:var(--accent);}
   .diagram-pane svg{width:100%;height:auto;}
-  .problem-copy{max-width:760px;margin-bottom:48px;}
-  .problem-copy p{font-size:18px;color:var(--ink);line-height:1.55;}
-  .problem-copy p + p{margin-top:16px;color:var(--muted);font-size:16px;}
 
-  /* PARTNER LIST */
+  /* HOW WE HELP — flow */
+  .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .flow-card{background:var(--paper);padding:30px 26px;display:flex;flex-direction:column;position:relative;}
+  .flow-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);}
+  .flow-num{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:14px;}
+  .flow-card h3{font-size:19px;margin-bottom:6px;}
+  .flow-sline{
+    font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--accent);display:block;margin-bottom:12px;
+  }
+  .flow-desc{font-size:13.5px;color:var(--muted);margin-bottom:18px;}
+  .flow-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+  .flow-tag{
+    font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.02em;
+    border:1px solid var(--line);padding:5px 9px;color:var(--muted);height:fit-content;
+  }
+  @media (max-width:900px){.flow-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.flow-grid{grid-template-columns:1fr;}}
+
+  .section-close{
+    margin-top:52px;padding-top:44px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:end;
+  }
+  .section-close h3{font-size:clamp(22px,3vw,30px);letter-spacing:-0.01em;}
+  .section-close p{font-size:15px;color:var(--muted);max-width:440px;}
+  @media (max-width:760px){.section-close{grid-template-columns:1fr;gap:16px;}}
+
+  /* WHO WE HELP */
   .partner-list{border-top:1px solid var(--line);}
   .partner-row{
     display:flex;align-items:center;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);
@@ -179,77 +254,74 @@
   .partner-row .arrow{font-family:'Space Mono',monospace;color:var(--muted);}
   .partner-row p{font-size:16.5px;font-weight:500;}
 
-  /* ENGAGEMENT MODELS */
-  .model-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);
+  /* WHAT WE BRING TO THE TABLE */
+  .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:0;}
+  .pillar-card{border:1px dashed var(--line);padding:28px 22px;background:var(--paper);}
+  .pillar-index{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);display:block;margin-bottom:14px;}
+  .pillar-card h3{font-size:19px;margin-bottom:10px;}
+  .pillar-card .psub{font-size:12.5px;color:var(--accent);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.03em;display:block;margin-bottom:14px;}
+  .pillar-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .pillar-tag{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;color:var(--muted);}
+  .pillar-tag:not(:last-child)::after{content:' ·';color:var(--line);}
+  .pillars-connector{
+    height:1px;background:var(--accent);margin:0 0 0 0;position:relative;
   }
-  .model-card{background:var(--paper);padding:36px 34px;display:flex;flex-direction:column;}
-  .model-card.highlight{background:var(--ink);}
-  .model-label{
-    font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--muted);
-    border:1px solid var(--line);width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-    margin-bottom:20px;flex:none;
+  .pillars-bridge{display:flex;justify-content:center;padding:18px 0;}
+  .pillars-bridge svg{width:100%;max-width:600px;height:24px;}
+  .pillars-statement{
+    text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:clamp(20px,2.6vw,28px);margin-top:8px;padding-top:8px;
   }
-  .model-card.highlight .model-label{border-color:var(--signal);color:var(--signal);}
-  .model-card h3{font-size:20px;margin-bottom:8px;}
-  .model-card.highlight h3{color:var(--paper);}
-  .model-card .sline{
-    font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
-    color:var(--accent);display:block;margin-bottom:14px;
-  }
-  .model-card.highlight .sline{color:var(--signal);}
-  .model-card .mdesc{font-size:14.5px;color:var(--muted);margin-bottom:20px;}
-  .model-card.highlight .mdesc{color:#c9c6b8;}
-  .model-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;}
-  .model-tag{
-    font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
-    border:1px solid var(--line);padding:6px 11px;color:var(--muted);height:fit-content;
-  }
-  .model-card.highlight .model-tag{border-color:rgba(244,242,234,.3);color:var(--paper);}
-  @media (max-width:760px){.model-grid{grid-template-columns:1fr;}}
-  .services-close{
-    margin-top:52px;padding-top:44px;border-top:1px solid var(--line);
-    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:end;
-  }
-  .services-close h3{font-size:clamp(22px,3vw,30px);letter-spacing:-0.01em;}
-  .services-close p{font-size:15px;color:var(--muted);max-width:440px;}
-  @media (max-width:760px){.services-close{grid-template-columns:1fr;gap:16px;}}
+  @media (max-width:900px){.pillars-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.pillars-grid{grid-template-columns:1fr;}}
 
-  /* ABOUT / FOUNDER */
-  .about-section{background:var(--ink);color:var(--paper);}
-  .about-intro{max-width:720px;margin-bottom:64px;}
-  .about-intro h2{color:var(--paper);font-size:clamp(26px,3.2vw,38px);line-height:1.18;}
-  .about-intro p{margin-top:18px;font-size:16.5px;color:#c9c6b8;line-height:1.6;}
-  .founder-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;}
+  /* OUTCOMES */
+  .outcomes-list{border-top:1px solid var(--line);}
+  .outcome-row{display:grid;grid-template-columns:280px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+  .outcome-transition{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;white-space:nowrap;}
+  .outcome-transition .from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line);}
+  .outcome-transition .arrow{color:var(--accent);margin:0 8px;}
+  .outcome-row p{font-size:15px;color:var(--muted);}
+  @media (max-width:640px){.outcome-row{grid-template-columns:1fr;gap:8px;}}
+
+  /* FOUNDER */
+  .founder-section{background:var(--ink);color:var(--paper);}
+  .founder-intro{max-width:700px;margin-bottom:44px;}
+  .founder-intro h2{color:var(--paper);font-size:clamp(26px,3.2vw,36px);line-height:1.18;}
+  .pull-quote{
+    font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.6vw,28px);font-weight:600;
+    color:var(--signal);max-width:640px;line-height:1.35;margin:28px 0 44px;padding-left:22px;
+    border-left:3px solid var(--signal);
+  }
+  .founder-grid{display:grid;grid-template-columns:180px 1fr;gap:44px;align-items:start;}
   .founder-avatar{
-    width:200px;height:200px;border:1px solid rgba(244,242,234,.25);
+    width:180px;height:180px;border:1px solid rgba(244,242,234,.25);
     display:flex;align-items:center;justify-content:center;
-    font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;color:var(--signal);
+    font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:700;color:var(--signal);
     background:
       repeating-linear-gradient(135deg, rgba(198,255,77,0.06) 0px, rgba(198,255,77,0.06) 1px, transparent 1px, transparent 14px);
     flex:none;
   }
-  .founder-name{font-size:26px;margin-bottom:6px;color:var(--paper);}
-  .founder-role{font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--signal);margin-bottom:22px;display:block;}
-  .founder-bio{color:#c9c6b8;font-size:16px;max-width:640px;line-height:1.65;}
+  .founder-name{font-size:24px;margin-bottom:6px;color:var(--paper);}
+  .founder-role{font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--signal);margin-bottom:20px;display:block;}
+  .founder-bio{color:#c9c6b8;font-size:15.5px;max-width:640px;line-height:1.65;}
   .founder-bio p+p{margin-top:14px;}
-  .founder-links{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
-  .about-section .btn-ghost{border-color:rgba(244,242,234,.4);color:var(--paper);}
-  .about-section .btn-ghost:hover{background:var(--paper);color:var(--ink);}
-  @media (max-width:640px){.founder-grid{grid-template-columns:1fr;}.founder-avatar{width:120px;height:120px;font-size:34px;}}
+  .founder-links{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
+  .founder-section .btn-ghost{border-color:rgba(244,242,234,.4);color:var(--paper);}
+  .founder-section .btn-ghost:hover{background:var(--paper);color:var(--ink);}
+  @media (max-width:640px){.founder-grid{grid-template-columns:1fr;}.founder-avatar{width:110px;height:110px;font-size:30px;}}
 
   /* STUDIO FACTS */
-  .facts-strip{border-top:1px solid rgba(244,242,234,.16);margin-top:64px;padding-top:44px;}
-  .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .facts-strip{border-top:1px solid rgba(244,242,234,.16);margin-top:56px;padding-top:40px;}
+  .facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .fact .flabel{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--signal);display:block;margin-bottom:10px;}
   .fact .fval{font-size:16.5px;font-weight:600;font-family:'Space Grotesk',sans-serif;color:var(--paper);line-height:1.3;}
-  @media (max-width:760px){.facts-grid{grid-template-columns:repeat(2,1fr);row-gap:28px;}}
-  @media (max-width:480px){.facts-grid{grid-template-columns:1fr;}}
+  @media (max-width:640px){.facts-grid{grid-template-columns:1fr;row-gap:22px;}}
 
   /* CTA */
   .cta-band{background:var(--signal);}
   .cta-inner{padding:96px 0;text-align:left;position:relative;}
-  .cta-band h2{font-size:clamp(30px,5vw,58px);max-width:780px;line-height:1.08;}
+  .cta-band h2{font-size:clamp(30px,5vw,54px);max-width:780px;line-height:1.08;}
   .cta-band p{margin-top:20px;color:var(--ink);font-size:17px;max-width:520px;opacity:.8;}
   .cta-actions{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
   .cta-band .btn-primary:hover{background:var(--ink);box-shadow:4px 4px 0 rgba(13,15,11,.3);}
@@ -257,7 +329,7 @@
 
   footer{padding:60px 0 36px;}
   .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:44px;}
-  .footer-tag{max-width:340px;color:var(--muted);font-size:14px;margin-top:14px;}
+  .footer-tag{max-width:360px;color:var(--muted);font-size:14px;margin-top:14px;}
   .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
   .footer-col h5{font-family:'Space Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px;}
   .footer-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;}
@@ -271,6 +343,7 @@
     .hero-canvas-wrap{aspect-ratio:16/10;order:-1;}
     .diagram-split{grid-template-columns:1fr;}
     .diagram-pane:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    .outcome-transition{white-space:normal;}
     .nav-links{position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--paper);flex-direction:column;justify-content:flex-start;padding:36px 40px;gap:22px;transform:translateX(100%);transition:transform .25s ease;}
     .nav-links.open{transform:translateX(0);}
     .menu-toggle{display:flex;}
@@ -278,11 +351,12 @@
   }
   @media (max-width:640px){
     .wrap{padding:0 22px;}
-    .hero{padding:130px 0 60px;}
-    section{padding:68px 0;}
-    .founder-grid{gap:26px;}
-    .cta-inner{padding:64px 0;}
+    .hero{padding:126px 0 56px;}
+    section{padding:64px 0;}
+    .founder-grid{gap:24px;}
+    .cta-inner{padding:60px 0;}
     .footer-top{flex-direction:column;}
+    .stage-visible,.stage-invisible{padding:24px;}
   }
 </style>
 </head>
@@ -295,12 +369,12 @@
     <a href="#top" class="logo"><span class="dot"></span>ServDesigns</a>
     <div class="nav-links" id="navLinks">
       <a href="#problem">Approach</a>
-      <a href="#services">How We Help</a>
-      <a href="#about">About</a>
+      <a href="#help">How We Help</a>
+      <a href="#founder">Founder</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-ghost" style="padding:10px 18px;font-size:12px;">Send a message</a>
+      <a href="#contact" class="btn btn-ghost" style="padding:10px 18px;font-size:12px;">Start a conversation</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -313,16 +387,22 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <div class="kicker"><span class="dash"></span>Service &amp; Systems Design Studio</div>
+          <div class="hero-manifesto"><span class="dash"></span>We connect what other teams separate</div>
           <h1>We make invisible systems visible.</h1>
-          <p class="hero-sub">Behind every customer experience lies a network of people, services, processes, technology, decisions, data — and increasingly, AI. When these systems disconnect, businesses feel it as friction, inefficiency and missed opportunity. We uncover what's really happening beneath the surface, and design better ways to work.</p>
+          <p class="hero-sub">Behind every customer experience lies a network of people, services, processes, technology, decisions, data — and increasingly, AI. ServDesigns helps businesses understand what's really happening, design what needs to change, and build solutions that actually work.</p>
+          <div class="hero-arch">
+            <span class="step">See it.</span><span class="sep">/</span>
+            <span class="step">Design it.</span><span class="sep">/</span>
+            <span class="step">Build it.</span><span class="sep">/</span>
+            <span class="step">Make it work.</span>
+          </div>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Send a message</a>
+            <a href="#contact" class="btn btn-primary">Start a conversation</a>
             <a href="#problem" class="btn btn-ghost">See the problem</a>
           </div>
           <div class="hero-meta">
             <span>Edinburgh, Scotland</span>
-            <span>Design &amp; Software Consulting</span>
+            <span>Design · Business · Technology · AI</span>
           </div>
         </div>
         <div class="hero-canvas-wrap">
@@ -334,19 +414,57 @@
 
   <div class="marquee">
     <div class="marquee-track" id="marqueeTrack">
-      <span>Service Design</span><span>—</span><span>Systems Design</span><span>—</span><span>Research &amp; Insight</span><span>—</span><span class="accentword">AI Workflow Design</span><span>—</span><span>Operating Model Design</span><span>—</span><span>Organisational Design</span><span>—</span><span>Experience Design</span><span>—</span><span>Software Development</span><span>—</span>
-      <span>Service Design</span><span>—</span><span>Systems Design</span><span>—</span><span>Research &amp; Insight</span><span>—</span><span class="accentword">AI Workflow Design</span><span>—</span><span>Operating Model Design</span><span>—</span><span>Organisational Design</span><span>—</span><span>Experience Design</span><span>—</span><span>Software Development</span><span>—</span>
+      <span>Systems Thinking</span><span>—</span><span>Business Design</span><span>—</span><span>Service Design</span><span>—</span><span>Software Development</span><span>—</span><span class="accentword">AI Workflow Design</span><span>—</span><span>Operating Models</span><span>—</span><span>Experience Design</span><span>—</span><span>Research &amp; Insight</span><span>—</span>
+      <span>Systems Thinking</span><span>—</span><span>Business Design</span><span>—</span><span>Service Design</span><span>—</span><span>Software Development</span><span>—</span><span class="accentword">AI Workflow Design</span><span>—</span><span>Operating Models</span><span>—</span><span>Experience Design</span><span>—</span><span>Research &amp; Insight</span><span>—</span>
     </div>
   </div>
 
-  <!-- PROBLEM / DIAGRAM -->
+  <!-- PROBLEM -->
   <section id="problem">
     <div class="wrap">
       <div class="kicker reveal"><span class="dash"></span>// 01 — The Problem</div>
-      <div class="problem-copy reveal">
-        <p>Businesses experience friction, inefficiency, inconsistent experiences and missed opportunities — not because they lack ideas, but because their operational systems were never designed to connect.</p>
-        <p>ServDesigns exists to make these invisible systems visible: we help clients uncover what's really happening beneath the surface, identify where value is being lost, and design better ways of working, serving customers and delivering products.</p>
+
+      <p class="lead-statement reveal">Businesses experience friction, inefficiency, inconsistent experiences and missed opportunities — <em>not because they lack ideas, but because their operational systems were never designed to connect.</em></p>
+
+      <div class="reframe-block reveal">
+        <span class="rf-lead">The problem you see isn't always the problem you need to solve</span>
+        <div class="reframe-list">
+          <p>A difficult customer journey might actually be a broken process.</p>
+          <p>A slow team might actually have a fragmented system.</p>
+          <p>A poor digital experience might actually be an organisational problem.</p>
+          <p>An AI opportunity might actually be a workflow problem.</p>
+        </div>
+        <p class="reframe-close">We look beneath the surface.</p>
       </div>
+
+      <div class="stage-diagram reveal">
+        <div class="stage-visible">
+          <span class="stage-label">What the customer sees</span>
+          <div class="stage-flow">
+            <span class="node">Website</span><span class="flow-arrow">→</span>
+            <span class="node">Form</span><span class="flow-arrow">→</span>
+            <span class="node">Email</span><span class="flow-arrow">→</span>
+            <span class="node">Support</span><span class="flow-arrow">→</span>
+            <span class="node">Outcome</span>
+          </div>
+        </div>
+        <div class="stage-connector">▾ beneath the surface ▾</div>
+        <div class="stage-invisible">
+          <span class="stage-label">What's actually running underneath</span>
+          <div class="stage-cluster">
+            <span class="node">People</span>
+            <span class="node">Policy</span>
+            <span class="node">Process</span>
+            <span class="node">Data</span>
+            <span class="node">Technology</span>
+            <span class="node">Decisions</span>
+            <span class="node">Teams</span>
+            <span class="node">Incentives</span>
+            <span class="node hl">AI</span>
+          </div>
+        </div>
+      </div>
+
       <div class="diagram-split reveal">
         <div class="diagram-pane before">
           <span class="tag">Before — Disconnected</span>
@@ -397,127 +515,195 @@
     </div>
   </section>
 
-  <!-- PARTNER WITH -->
-  <section style="padding-top:0;">
+  <!-- HOW WE HELP -->
+  <section id="help" style="background:var(--paper-2);">
     <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 02 — Who We Work With</div>
+      <div class="kicker reveal"><span class="dash"></span>// 02 — How We Help</div>
       <div class="section-head reveal">
-        <h2>We partner with organisations that want to —</h2>
+        <h2>See it. Design it. Build it. Make it work.</h2>
+        <p>Four simple stages, not a rigid process. Work with us for one, several, or all of them — from research through to shipped software.</p>
+      </div>
+      <div class="flow-grid reveal">
+        <div class="flow-card">
+          <span class="flow-num">01 / SEE</span>
+          <h3>See</h3>
+          <span class="flow-sline">Understand what's really happening</span>
+          <p class="flow-desc">We look beneath the visible experience to understand the people, processes and systems actually producing it.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Research</span>
+            <span class="flow-tag">Systems Thinking</span>
+            <span class="flow-tag">Service Design</span>
+            <span class="flow-tag">Business Analysis</span>
+            <span class="flow-tag">Journey Mapping</span>
+            <span class="flow-tag">Service Blueprints</span>
+          </div>
+        </div>
+        <div class="flow-card">
+          <span class="flow-num">02 / DESIGN</span>
+          <h3>Design</h3>
+          <span class="flow-sline">Decide what should change</span>
+          <p class="flow-desc">We design the service, the operating model and the experience together — not the interface in isolation.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Business Design</span>
+            <span class="flow-tag">Service Design</span>
+            <span class="flow-tag">Experience Design</span>
+            <span class="flow-tag">Operating Models</span>
+            <span class="flow-tag">AI Opportunity</span>
+            <span class="flow-tag">Future-State Design</span>
+          </div>
+        </div>
+        <div class="flow-card">
+          <span class="flow-num">03 / BUILD</span>
+          <h3>Build</h3>
+          <span class="flow-sline">From design into working software</span>
+          <p class="flow-desc">We help build and implement what's been designed — turning blueprints into shipped products and working systems, not just handover documents.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Product Design</span>
+            <span class="flow-tag">Prototyping</span>
+            <span class="flow-tag">Software Development</span>
+            <span class="flow-tag">AI Solutions</span>
+            <span class="flow-tag">MVPs</span>
+          </div>
+        </div>
+        <div class="flow-card">
+          <span class="flow-num">04 / MAKE IT WORK</span>
+          <h3>Make It Work</h3>
+          <span class="flow-sline">Stay accountable for outcomes</span>
+          <p class="flow-desc">We stay involved through delivery and beyond — measuring results and evolving the system as your business changes.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Implementation</span>
+            <span class="flow-tag">Measurement</span>
+            <span class="flow-tag">Optimisation</span>
+            <span class="flow-tag">Continuous Improvement</span>
+            <span class="flow-tag">Design Partnership</span>
+          </div>
+        </div>
+      </div>
+      <div class="section-close reveal">
+        <h3>See it. Design it. Build it. Make it work.</h3>
+        <p>ServDesigns brings design, business, technology and AI together to help you move from an unclear problem to something real, useful and ready to scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE HELP -->
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 03 — Who We Help</div>
+      <div class="section-head reveal">
+        <h2>We work with teams at the point where things stop connecting.</h2>
       </div>
       <div class="partner-list reveal">
-        <div class="partner-row"><span class="pnum">01</span><span class="arrow">→</span><p>Redesign fragmented operational workflows into something coherent</p></div>
-        <div class="partner-row"><span class="pnum">02</span><span class="arrow">→</span><p>Bring customer experience and employee experience into one connected system</p></div>
-        <div class="partner-row"><span class="pnum">03</span><span class="arrow">→</span><p>Prepare operations for AI and intelligent automation — deliberately, not by default</p></div>
-        <div class="partner-row"><span class="pnum">04</span><span class="arrow">→</span><p>Build a scalable service operating model</p></div>
-        <div class="partner-row"><span class="pnum">05</span><span class="arrow">→</span><p>Find an end-to-end, holistic systems partner instead of a set of disconnected vendors</p></div>
-        <div class="partner-row"><span class="pnum">06</span><span class="arrow">→</span><p>Lead an operations transformation with a partner who stays through delivery</p></div>
+        <div class="partner-row"><span class="pnum">01</span><span class="arrow">→</span><p>You're growing, but your ways of working haven't caught up</p></div>
+        <div class="partner-row"><span class="pnum">02</span><span class="arrow">→</span><p>Your customer experience is exposing operational problems</p></div>
+        <div class="partner-row"><span class="pnum">03</span><span class="arrow">→</span><p>Your teams have built workarounds around broken processes</p></div>
+        <div class="partner-row"><span class="pnum">04</span><span class="arrow">→</span><p>You're planning an AI initiative but don't know where it belongs</p></div>
+        <div class="partner-row"><span class="pnum">05</span><span class="arrow">→</span><p>You've designed the future state but need help making it real</p></div>
+        <div class="partner-row"><span class="pnum">06</span><span class="arrow">→</span><p>You're launching something important and need design and technology in the same room</p></div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES / ENGAGEMENT MODELS -->
-  <section id="services" style="background:var(--paper-2);">
+  <!-- WHAT WE BRING TO THE TABLE -->
+  <section style="background:var(--paper-2);">
     <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 03 — Engagement Models</div>
+      <div class="kicker reveal"><span class="dash"></span>// 04 — What We Bring To The Table</div>
       <div class="section-head reveal">
-        <h2>Not a fixed process. A set of ways to work together.</h2>
-        <p>These aren't sequential steps you have to move through in order — pick the model that fits where you are, combine a few, or hand us the whole thing.</p>
+        <h2>Design, business, technology and AI. Most teams keep them separate. We don't.</h2>
       </div>
-      <div class="model-grid reveal">
-        <div class="model-card">
-          <span class="model-label">A</span>
-          <h3>Design &amp; Redesign</h3>
-          <span class="sline">Grounded in human-centred research</span>
-          <p class="mdesc">We design or redesign services and systems based on real research with your customers, employees and teams — not assumptions.</p>
-          <div class="model-tags">
-            <span class="model-tag">User &amp; Customer Research</span>
-            <span class="model-tag">Service Design</span>
-            <span class="model-tag">Systems Design</span>
-            <span class="model-tag">Experience Design</span>
+      <div class="pillars-grid reveal">
+        <div class="pillar-card">
+          <span class="pillar-index">01</span>
+          <h3>Design</h3>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Service</span><span class="pillar-tag">Product</span><span class="pillar-tag">Experience</span><span class="pillar-tag">Research</span>
           </div>
         </div>
-        <div class="model-card">
-          <span class="model-label">B</span>
-          <h3>As-Is &amp; Future-State Roadmaps</h3>
-          <span class="sline">See where you are, and where you're headed</span>
-          <p class="mdesc">We map your current operating reality as it actually is, then set out a practical roadmap for the future state you're working towards.</p>
-          <div class="model-tags">
-            <span class="model-tag">As-Is Systems Mapping</span>
-            <span class="model-tag">Future-State Design</span>
-            <span class="model-tag">Operating Model Roadmaps</span>
-            <span class="model-tag">Scenario Planning</span>
+        <div class="pillar-card">
+          <span class="pillar-index">02</span>
+          <h3>Business</h3>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Systems</span><span class="pillar-tag">Strategy</span><span class="pillar-tag">Operating Models</span><span class="pillar-tag">Organisation</span>
           </div>
         </div>
-        <div class="model-card">
-          <span class="model-label">C</span>
-          <h3>Build &amp; Implement</h3>
-          <span class="sline">From design into working software</span>
-          <p class="mdesc">We help build and implement what's been designed — turning blueprints into shipped products and working systems, not just handover documents.</p>
-          <div class="model-tags">
-            <span class="model-tag">Digital Product Development</span>
-            <span class="model-tag">Web &amp; Software Development</span>
-            <span class="model-tag">MVPs &amp; Prototypes</span>
-            <span class="model-tag">Design-to-Development</span>
+        <div class="pillar-card">
+          <span class="pillar-index">03</span>
+          <h3>Technology</h3>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Software</span><span class="pillar-tag">Digital Products</span><span class="pillar-tag">Prototypes</span>
           </div>
         </div>
-        <div class="model-card">
-          <span class="model-label">D</span>
-          <h3>Apply AI</h3>
-          <span class="sline">Knowing where AI helps, and where human pace matters</span>
-          <p class="mdesc">We help you tell which parts of a service or workflow genuinely benefit from AI's speed and scale — and which are better left running at human pace.</p>
-          <div class="model-tags">
-            <span class="model-tag">AI Opportunity Discovery</span>
-            <span class="model-tag">Human–AI Interaction</span>
-            <span class="model-tag">Intelligent Automation</span>
-            <span class="model-tag">AI Readiness &amp; Adoption</span>
-          </div>
-        </div>
-        <div class="model-card">
-          <span class="model-label">E</span>
-          <h3>Deliver &amp; Evolve</h3>
-          <span class="sline">An ongoing partner, not a one-off project</span>
-          <p class="mdesc">We stay alongside your team through delivery and beyond — measuring outcomes and evolving the system as your business changes.</p>
-          <div class="model-tags">
-            <span class="model-tag">Embedded Design Partner</span>
-            <span class="model-tag">Ongoing Strategic Partner</span>
-            <span class="model-tag">Continuous Improvement</span>
-          </div>
-        </div>
-        <div class="model-card highlight">
-          <span class="model-label">F</span>
-          <h3>Or All Of It</h3>
-          <span class="sline">One partner, start to finish</span>
-          <p class="mdesc">Research through delivery, as a single accountable team — for organisations that want a holistic systems partner rather than a set of disconnected vendors.</p>
-          <div class="model-tags">
-            <span class="model-tag">End-to-End Partnership</span>
-            <span class="model-tag">Holistic Systems Design</span>
-            <span class="model-tag">Single Accountable Team</span>
+        <div class="pillar-card">
+          <span class="pillar-index">04</span>
+          <h3>AI</h3>
+          <span class="psub">AI isn't a strategy. It's a design decision.</span>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Opportunity</span><span class="pillar-tag">Workflows</span><span class="pillar-tag">Automation</span><span class="pillar-tag">Human-AI Interaction</span>
           </div>
         </div>
       </div>
-      <div class="services-close reveal">
-        <h3>See it. Design it. Build it. Make it work.</h3>
-        <p>ServDesigns brings design, business strategy, technology and AI together to help you move from an unclear problem to something real, useful and ready to scale.</p>
+      <div class="pillars-bridge reveal">
+        <svg viewBox="0 0 600 24" preserveAspectRatio="none">
+          <line x1="0" y1="12" x2="600" y2="12" stroke="#3d4bfa" stroke-width="1.5"/>
+          <circle cx="75" cy="12" r="4" fill="#3d4bfa"/>
+          <circle cx="225" cy="12" r="4" fill="#3d4bfa"/>
+          <circle cx="375" cy="12" r="4" fill="#3d4bfa"/>
+          <circle cx="525" cy="12" r="4" fill="#3d4bfa"/>
+        </svg>
+      </div>
+      <p class="pillars-statement reveal">One connected team instead of four disconnected suppliers.</p>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 05 — What Changes</div>
+      <div class="section-head reveal">
+        <h2>What changes once the system is visible.</h2>
+      </div>
+      <div class="outcomes-list reveal">
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Fragmented</span><span class="arrow">→</span>Connected</span>
+          <p>Teams understand how the service actually works.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Assumptions</span><span class="arrow">→</span>Evidence</span>
+          <p>Decisions are grounded in customer and operational reality.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Ideas</span><span class="arrow">→</span>Working Solutions</span>
+          <p>Concepts become prototypes, products and services.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">AI Hype</span><span class="arrow">→</span>Useful AI</span>
+          <p>AI is applied where it creates measurable value — and left out where it shouldn't be.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Handover</span><span class="arrow">→</span>Ownership</span>
+          <p>Someone stays accountable for getting the solution working.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT US -->
-  <section id="about" class="about-section">
+  <!-- FOUNDER -->
+  <section id="founder" class="founder-section">
     <div class="wrap">
-      <div class="kicker reveal" style="color:var(--signal);"><span class="dash" style="background:var(--signal);"></span>// 04 — About Us</div>
-      <div class="about-intro reveal">
-        <h2>A small studio, backed by real delivery experience.</h2>
-        <p>ServDesigns is a service and systems design studio based in Edinburgh — part of a broader design and software consulting venture. We're intentionally small: a focused team that acts as a genuine partner to the businesses we work with, not one account among hundreds.</p>
+      <div class="kicker reveal" style="color:var(--signal);"><span class="dash" style="background:var(--signal);"></span>// 06 — Founder</div>
+      <div class="founder-intro reveal">
+        <h2>Built on real delivery experience, not just a viewpoint.</h2>
       </div>
+      <blockquote class="pull-quote reveal">"Don't just fix the experience. Understand the system that created it."</blockquote>
       <div class="founder-grid reveal">
         <div class="founder-avatar">SA</div>
         <div>
           <h3 class="founder-name">Shweta Amale</h3>
           <span class="founder-role">Founder, ServDesigns</span>
           <div class="founder-bio">
-            <p>15+ years of experience delivering transformation initiatives across global markets — leading complex programmes where design, operations and technology meet.</p>
-            <p>Supported by experienced entrepreneurs and industry advisors, ServDesigns brings together design expertise, business thinking and delivery capability to turn ideas into solutions that work in the real world.</p>
+            <p>Founded by Shweta Amale, a service designer who has spent 15+ years working across design, technology and transformation — including large-scale programmes in financial services, healthcare and the public sector.</p>
+            <p>Her background bridges engineering, consulting and a Service Design MA from the Royal College of Art — design, business and technology, not just the interface on top of them.</p>
+            <p>ServDesigns brings that same cross-disciplinary thinking to smaller teams and ambitious businesses — helping them understand complex problems, design practical solutions, and stay involved until those solutions work in the real world.</p>
           </div>
           <div class="founder-links">
             <a href="https://www.linkedin.com/in/shwetaamale/" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn ↗</a>
@@ -529,7 +715,6 @@
           <div class="fact"><span class="flabel">Industry</span><span class="fval">IT Services &amp; IT Consulting</span></div>
           <div class="fact"><span class="flabel">Company Size</span><span class="fval">2–10 Employees</span></div>
           <div class="fact"><span class="flabel">Headquarters</span><span class="fval">Edinburgh, Scotland</span></div>
-          <div class="fact"><span class="flabel">Studio Model</span><span class="fval">Part of a Design &amp; Software Consulting Venture</span></div>
         </div>
       </div>
     </div>
@@ -538,11 +723,11 @@
   <!-- CTA -->
   <section class="cta-band" id="contact" style="padding:0;">
     <div class="wrap cta-inner">
-      <div class="kicker reveal" style="color:var(--ink);"><span class="dash" style="background:var(--ink);"></span>// 05 — Get In Touch</div>
-      <h2 class="reveal">Think we can help your business? Send us a message.</h2>
-      <p class="reveal">Tell us what's not connecting — we'll get in touch to talk through how ServDesigns can help.</p>
+      <div class="kicker reveal" style="color:var(--ink);"><span class="dash" style="background:var(--ink);"></span>// 07 — Get In Touch</div>
+      <h2 class="reveal">Something isn't connecting?</h2>
+      <p class="reveal">Tell us what's happening. We'll help you work out what needs to change.</p>
       <div class="cta-actions reveal">
-        <a href="mailto:hello@servdesigns.com" class="btn btn-primary">Email hello@servdesigns.com</a>
+        <a href="mailto:hello@servdesigns.com" class="btn btn-primary">Start a conversation</a>
         <a href="https://www.linkedin.com/in/shwetaamale/" target="_blank" rel="noopener" class="btn btn-ghost">Message on LinkedIn</a>
       </div>
     </div>
@@ -555,14 +740,14 @@
     <div class="footer-top">
       <div>
         <a href="#top" class="logo"><span class="dot"></span>ServDesigns</a>
-        <p class="footer-tag">Service &amp; systems design studio, based in Edinburgh.</p>
+        <p class="footer-tag">We connect what other teams separate — design, business, technology and AI, in service of one outcome.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h5>Studio</h5>
           <a href="#problem">Approach</a>
-          <a href="#services">How We Help</a>
-          <a href="#about">About</a>
+          <a href="#help">How We Help</a>
+          <a href="#founder">Founder</a>
         </div>
         <div class="footer-col">
           <h5>Get In Touch</h5>
@@ -573,7 +758,6 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> SERVDESIGNS — EDINBURGH, SCOTLAND</span>
-      <span>PART OF A DESIGN &amp; SOFTWARE CONSULTING VENTURE</span>
     </div>
   </div>
 </footer>
