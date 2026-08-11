@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ServDesigns — Making Invisible Systems Visible</title>
+<meta name="description" content="ServDesigns is a service and systems design studio in Edinburgh, part of a broader design and software consulting venture. We help small and mid-sized organisations uncover what's really happening beneath the surface and design better ways to work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0f0b;
+    --muted:#5b5848;
+    --paper:#f4f2ea;
+    --paper-2:#eae6d8;
+    --line:#d7d2bf;
+    --accent:#3d4bfa;
+    --accent-2:#1f27b8;
+    --signal:#c6ff4d;
+    --radius:2px;
+    --maxw:1280px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  ::selection{background:var(--ink);color:var(--signal);}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    margin:0;
+    color:var(--ink);
+  }
+  .mono{font-family:'Space Mono',monospace;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+
+  .noise{
+    position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .kicker{
+    font-family:'Space Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .kicker .dash{width:22px;height:1px;background:var(--accent);display:inline-block;}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 28px;
+    border-radius:var(--radius);
+    font-weight:600;
+    font-size:14.5px;
+    font-family:'Space Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    cursor:pointer;
+    border:1px solid var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(244,242,234,0.86);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line);}
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:var(--maxw);margin:0 auto;padding:20px 40px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite;flex:none;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(1.5);}}
+  .nav-links{display:flex;gap:8px;align-items:center;}
+  .nav-links a{
+    font-family:'Space Mono',monospace;
+    font-size:13px;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--muted);padding:8px 4px;position:relative;
+  }
+  .nav-links a::before{content:'[';opacity:0;margin-right:2px;color:var(--accent);transition:opacity .15s ease;}
+  .nav-links a::after{content:']';opacity:0;margin-left:2px;color:var(--accent);transition:opacity .15s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::before,.nav-links a:hover::after{opacity:1;}
+  .nav-cta{display:flex;align-items:center;gap:20px;}
+  .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+  .menu-toggle span{width:22px;height:2px;background:var(--ink);display:block;}
+
+  /* HERO */
+  .hero{padding:168px 0 90px;position:relative;overflow:hidden;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;position:relative;
+  }
+  .hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.02;}
+  .hero-sub{margin-top:28px;font-size:17.5px;color:var(--muted);max-width:520px;}
+  .hero-meta{
+    margin-top:36px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.05em;display:flex;gap:14px;flex-wrap:wrap;
+  }
+  .hero-meta span:not(:last-child)::after{content:'·';margin-left:14px;color:var(--line);}
+  .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .hero-canvas-wrap{
+    position:relative;aspect-ratio:1/1;border:1px solid var(--line);background:var(--paper-2);
+  }
+  .hero-canvas-wrap::before{
+    content:'FIG. 01 — THE OPERATIONAL NETWORK';
+    position:absolute;top:14px;left:14px;font-family:'Space Mono',monospace;font-size:10.5px;
+    letter-spacing:.06em;color:var(--muted);z-index:2;text-transform:uppercase;
+  }
+  #networkCanvas{width:100%;height:100%;display:block;}
+
+  /* MARQUEE */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--ink);color:var(--paper);
+    overflow:hidden;white-space:nowrap;padding:16px 0;
+  }
+  .marquee-track{display:inline-flex;animation:scroll-left 32s linear infinite;}
+  .marquee-track span{
+    font-family:'Space Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:.08em;
+    padding:0 26px;color:var(--paper);opacity:.85;
+  }
+  .marquee-track span.accentword{color:var(--signal);}
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  section{padding:100px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head h2{font-size:clamp(26px,3.2vw,38px);line-height:1.18;}
+  .section-head p{margin-top:16px;font-size:16px;color:var(--muted);}
+
+  /* PROBLEM / DIAGRAM */
+  .diagram-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+  .diagram-pane{padding:36px;position:relative;}
+  .diagram-pane:first-child{border-right:1px solid var(--line);}
+  .diagram-pane .tag{
+    font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);margin-bottom:18px;display:block;
+  }
+  .diagram-pane.after .tag{color:var(--accent);}
+  .diagram-pane svg{width:100%;height:auto;}
+  .problem-copy{max-width:760px;margin-bottom:48px;}
+  .problem-copy p{font-size:18px;color:var(--ink);line-height:1.55;}
+  .problem-copy p + p{margin-top:16px;color:var(--muted);font-size:16px;}
+
+  /* PARTNER LIST */
+  .partner-list{border-top:1px solid var(--line);}
+  .partner-row{
+    display:flex;align-items:center;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .partner-row .pnum{font-family:'Space Mono',monospace;color:var(--accent);font-size:13px;min-width:28px;}
+  .partner-row .arrow{font-family:'Space Mono',monospace;color:var(--muted);}
+  .partner-row p{font-size:16.5px;font-weight:500;}
+
+  /* ENGAGEMENT MODELS */
+  .model-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);
+  }
+  .model-card{background:var(--paper);padding:36px 34px;display:flex;flex-direction:column;}
+  .model-card.highlight{background:var(--ink);}
+  .model-label{
+    font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--muted);
+    border:1px solid var(--line);width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;flex:none;
+  }
+  .model-card.highlight .model-label{border-color:var(--signal);color:var(--signal);}
+  .model-card h3{font-size:20px;margin-bottom:8px;}
+  .model-card.highlight h3{color:var(--paper);}
+  .model-card .sline{
+    font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--accent);display:block;margin-bottom:14px;
+  }
+  .model-card.highlight .sline{color:var(--signal);}
+  .model-card .mdesc{font-size:14.5px;color:var(--muted);margin-bottom:20px;}
+  .model-card.highlight .mdesc{color:#c9c6b8;}
+  .model-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;}
+  .model-tag{
+    font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
+    border:1px solid var(--line);padding:6px 11px;color:var(--muted);height:fit-content;
+  }
+  .model-card.highlight .model-tag{border-color:rgba(244,242,234,.3);color:var(--paper);}
+  @media (max-width:760px){.model-grid{grid-template-columns:1fr;}}
+  .services-close{
+    margin-top:52px;padding-top:44px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:end;
+  }
+  .services-close h3{font-size:clamp(22px,3vw,30px);letter-spacing:-0.01em;}
+  .services-close p{font-size:15px;color:var(--muted);max-width:440px;}
+  @media (max-width:760px){.services-close{grid-template-columns:1fr;gap:16px;}}
+
+  /* ABOUT / FOUNDER */
+  .about-section{background:var(--ink);color:var(--paper);}
+  .about-intro{max-width:720px;margin-bottom:64px;}
+  .about-intro h2{color:var(--paper);font-size:clamp(26px,3.2vw,38px);line-height:1.18;}
+  .about-intro p{margin-top:18px;font-size:16.5px;color:#c9c6b8;line-height:1.6;}
+  .founder-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;}
+  .founder-avatar{
+    width:200px;height:200px;border:1px solid rgba(244,242,234,.25);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;color:var(--signal);
+    background:
+      repeating-linear-gradient(135deg, rgba(198,255,77,0.06) 0px, rgba(198,255,77,0.06) 1px, transparent 1px, transparent 14px);
+    flex:none;
+  }
+  .founder-name{font-size:26px;margin-bottom:6px;color:var(--paper);}
+  .founder-role{font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--signal);margin-bottom:22px;display:block;}
+  .founder-bio{color:#c9c6b8;font-size:16px;max-width:640px;line-height:1.65;}
+  .founder-bio p+p{margin-top:14px;}
+  .founder-links{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+  .about-section .btn-ghost{border-color:rgba(244,242,234,.4);color:var(--paper);}
+  .about-section .btn-ghost:hover{background:var(--paper);color:var(--ink);}
+  @media (max-width:640px){.founder-grid{grid-template-columns:1fr;}.founder-avatar{width:120px;height:120px;font-size:34px;}}
+
+  /* STUDIO FACTS */
+  .facts-strip{border-top:1px solid rgba(244,242,234,.16);margin-top:64px;padding-top:44px;}
+  .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .fact .flabel{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--signal);display:block;margin-bottom:10px;}
+  .fact .fval{font-size:16.5px;font-weight:600;font-family:'Space Grotesk',sans-serif;color:var(--paper);line-height:1.3;}
+  @media (max-width:760px){.facts-grid{grid-template-columns:repeat(2,1fr);row-gap:28px;}}
+  @media (max-width:480px){.facts-grid{grid-template-columns:1fr;}}
+
+  /* CTA */
+  .cta-band{background:var(--signal);}
+  .cta-inner{padding:96px 0;text-align:left;position:relative;}
+  .cta-band h2{font-size:clamp(30px,5vw,58px);max-width:780px;line-height:1.08;}
+  .cta-band p{margin-top:20px;color:var(--ink);font-size:17px;max-width:520px;opacity:.8;}
+  .cta-actions{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+  .cta-band .btn-primary:hover{background:var(--ink);box-shadow:4px 4px 0 rgba(13,15,11,.3);}
+  .cta-band .btn-ghost{border-color:var(--ink);}
+
+  footer{padding:60px 0 36px;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:44px;}
+  .footer-tag{max-width:340px;color:var(--muted);font-size:14px;margin-top:14px;}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .footer-col h5{font-family:'Space Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px;}
+  .footer-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;}
+  .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);padding-top:26px;border-top:1px solid var(--line);}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-canvas-wrap{aspect-ratio:16/10;order:-1;}
+    .diagram-split{grid-template-columns:1fr;}
+    .diagram-pane:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    .nav-links{position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--paper);flex-direction:column;justify-content:flex-start;padding:36px 40px;gap:22px;transform:translateX(100%);transition:transform .25s ease;}
+    .nav-links.open{transform:translateX(0);}
+    .menu-toggle{display:flex;}
+    .nav-cta .btn-ghost{display:none;}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+    .hero{padding:130px 0 60px;}
+    section{padding:68px 0;}
+    .founder-grid{gap:26px;}
+    .cta-inner{padding:64px 0;}
+    .footer-top{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="#top" class="logo"><span class="dot"></span>ServDesigns</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#problem">Approach</a>
+      <a href="#services">How We Help</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost" style="padding:10px 18px;font-size:12px;">Send a message</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker"><span class="dash"></span>Service &amp; Systems Design Studio</div>
+          <h1>We make invisible systems visible.</h1>
+          <p class="hero-sub">Behind every customer experience lies a network of people, services, processes, technology, decisions, data — and increasingly, AI. When these systems disconnect, businesses feel it as friction, inefficiency and missed opportunity. We uncover what's really happening beneath the surface, and design better ways to work.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Send a message</a>
+            <a href="#problem" class="btn btn-ghost">See the problem</a>
+          </div>
+          <div class="hero-meta">
+            <span>Edinburgh, Scotland</span>
+            <span>Design &amp; Software Consulting</span>
+          </div>
+        </div>
+        <div class="hero-canvas-wrap">
+          <canvas id="networkCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>Service Design</span><span>—</span><span>Systems Design</span><span>—</span><span>Research &amp; Insight</span><span>—</span><span class="accentword">AI Workflow Design</span><span>—</span><span>Operating Model Design</span><span>—</span><span>Organisational Design</span><span>—</span><span>Experience Design</span><span>—</span><span>Software Development</span><span>—</span>
+      <span>Service Design</span><span>—</span><span>Systems Design</span><span>—</span><span>Research &amp; Insight</span><span>—</span><span class="accentword">AI Workflow Design</span><span>—</span><span>Operating Model Design</span><span>—</span><span>Organisational Design</span><span>—</span><span>Experience Design</span><span>—</span><span>Software Development</span><span>—</span>
+    </div>
+  </div>
+
+  <!-- PROBLEM / DIAGRAM -->
+  <section id="problem">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 01 — The Problem</div>
+      <div class="problem-copy reveal">
+        <p>Businesses experience friction, inefficiency, inconsistent experiences and missed opportunities — not because they lack ideas, but because their operational systems were never designed to connect.</p>
+        <p>ServDesigns exists to make these invisible systems visible: we help clients uncover what's really happening beneath the surface, identify where value is being lost, and design better ways of working, serving customers and delivering products.</p>
+      </div>
+      <div class="diagram-split reveal">
+        <div class="diagram-pane before">
+          <span class="tag">Before — Disconnected</span>
+          <svg viewBox="0 0 300 190" fill="none">
+            <g stroke="#b9b4a0" stroke-width="1" stroke-dasharray="2 3">
+              <line x1="40" y1="30" x2="95" y2="80"/>
+              <line x1="230" y1="25" x2="190" y2="70"/>
+            </g>
+            <g fill="#0d0f0b" opacity="0.55">
+              <circle cx="40" cy="30" r="6"/>
+              <circle cx="230" cy="25" r="6"/>
+              <circle cx="95" cy="80" r="6"/>
+              <circle cx="190" cy="70" r="6"/>
+              <circle cx="20" cy="140" r="6"/>
+              <circle cx="140" cy="150" r="6"/>
+              <circle cx="260" cy="130" r="6"/>
+              <circle cx="150" cy="30" r="6"/>
+            </g>
+          </svg>
+        </div>
+        <div class="diagram-pane after">
+          <span class="tag">After — Connected</span>
+          <svg viewBox="0 0 300 190" fill="none">
+            <g stroke="#3d4bfa" stroke-width="1.2">
+              <line x1="150" y1="95" x2="40" y2="35"/>
+              <line x1="150" y1="95" x2="230" y2="30"/>
+              <line x1="150" y1="95" x2="95" y2="150"/>
+              <line x1="150" y1="95" x2="220" y2="150"/>
+              <line x1="150" y1="95" x2="30" y2="130"/>
+              <line x1="150" y1="95" x2="150" y2="25"/>
+              <line x1="40" y1="35" x2="150" y2="25"/>
+              <line x1="230" y1="30" x2="150" y2="25"/>
+              <line x1="95" y1="150" x2="30" y2="130"/>
+              <line x1="220" y1="150" x2="230" y2="30"/>
+            </g>
+            <g fill="#3d4bfa">
+              <circle cx="150" cy="95" r="7"/>
+              <circle cx="40" cy="35" r="5.5"/>
+              <circle cx="230" cy="30" r="5.5"/>
+              <circle cx="95" cy="150" r="5.5"/>
+              <circle cx="220" cy="150" r="5.5"/>
+              <circle cx="30" cy="130" r="5.5"/>
+              <circle cx="150" cy="25" r="5.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER WITH -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 02 — Who We Work With</div>
+      <div class="section-head reveal">
+        <h2>We partner with organisations that want to —</h2>
+      </div>
+      <div class="partner-list reveal">
+        <div class="partner-row"><span class="pnum">01</span><span class="arrow">→</span><p>Redesign fragmented operational workflows into something coherent</p></div>
+        <div class="partner-row"><span class="pnum">02</span><span class="arrow">→</span><p>Bring customer experience and employee experience into one connected system</p></div>
+        <div class="partner-row"><span class="pnum">03</span><span class="arrow">→</span><p>Prepare operations for AI and intelligent automation — deliberately, not by default</p></div>
+        <div class="partner-row"><span class="pnum">04</span><span class="arrow">→</span><p>Build a scalable service operating model</p></div>
+        <div class="partner-row"><span class="pnum">05</span><span class="arrow">→</span><p>Find an end-to-end, holistic systems partner instead of a set of disconnected vendors</p></div>
+        <div class="partner-row"><span class="pnum">06</span><span class="arrow">→</span><p>Lead an operations transformation with a partner who stays through delivery</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / ENGAGEMENT MODELS -->
+  <section id="services" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 03 — Engagement Models</div>
+      <div class="section-head reveal">
+        <h2>Not a fixed process. A set of ways to work together.</h2>
+        <p>These aren't sequential steps you have to move through in order — pick the model that fits where you are, combine a few, or hand us the whole thing.</p>
+      </div>
+      <div class="model-grid reveal">
+        <div class="model-card">
+          <span class="model-label">A</span>
+          <h3>Design &amp; Redesign</h3>
+          <span class="sline">Grounded in human-centred research</span>
+          <p class="mdesc">We design or redesign services and systems based on real research with your customers, employees and teams — not assumptions.</p>
+          <div class="model-tags">
+            <span class="model-tag">User &amp; Customer Research</span>
+            <span class="model-tag">Service Design</span>
+            <span class="model-tag">Systems Design</span>
+            <span class="model-tag">Experience Design</span>
+          </div>
+        </div>
+        <div class="model-card">
+          <span class="model-label">B</span>
+          <h3>As-Is &amp; Future-State Roadmaps</h3>
+          <span class="sline">See where you are, and where you're headed</span>
+          <p class="mdesc">We map your current operating reality as it actually is, then set out a practical roadmap for the future state you're working towards.</p>
+          <div class="model-tags">
+            <span class="model-tag">As-Is Systems Mapping</span>
+            <span class="model-tag">Future-State Design</span>
+            <span class="model-tag">Operating Model Roadmaps</span>
+            <span class="model-tag">Scenario Planning</span>
+          </div>
+        </div>
+        <div class="model-card">
+          <span class="model-label">C</span>
+          <h3>Build &amp; Implement</h3>
+          <span class="sline">From design into working software</span>
+          <p class="mdesc">We help build and implement what's been designed — turning blueprints into shipped products and working systems, not just handover documents.</p>
+          <div class="model-tags">
+            <span class="model-tag">Digital Product Development</span>
+            <span class="model-tag">Web &amp; Software Development</span>
+            <span class="model-tag">MVPs &amp; Prototypes</span>
+            <span class="model-tag">Design-to-Development</span>
+          </div>
+        </div>
+        <div class="model-card">
+          <span class="model-label">D</span>
+          <h3>Apply AI</h3>
+          <span class="sline">Knowing where AI helps, and where human pace matters</span>
+          <p class="mdesc">We help you tell which parts of a service or workflow genuinely benefit from AI's speed and scale — and which are better left running at human pace.</p>
+          <div class="model-tags">
+            <span class="model-tag">AI Opportunity Discovery</span>
+            <span class="model-tag">Human–AI Interaction</span>
+            <span class="model-tag">Intelligent Automation</span>
+            <span class="model-tag">AI Readiness &amp; Adoption</span>
+          </div>
+        </div>
+        <div class="model-card">
+          <span class="model-label">E</span>
+          <h3>Deliver &amp; Evolve</h3>
+          <span class="sline">An ongoing partner, not a one-off project</span>
+          <p class="mdesc">We stay alongside your team through delivery and beyond — measuring outcomes and evolving the system as your business changes.</p>
+          <div class="model-tags">
+            <span class="model-tag">Embedded Design Partner</span>
+            <span class="model-tag">Ongoing Strategic Partner</span>
+            <span class="model-tag">Continuous Improvement</span>
+          </div>
+        </div>
+        <div class="model-card highlight">
+          <span class="model-label">F</span>
+          <h3>Or All Of It</h3>
+          <span class="sline">One partner, start to finish</span>
+          <p class="mdesc">Research through delivery, as a single accountable team — for organisations that want a holistic systems partner rather than a set of disconnected vendors.</p>
+          <div class="model-tags">
+            <span class="model-tag">End-to-End Partnership</span>
+            <span class="model-tag">Holistic Systems Design</span>
+            <span class="model-tag">Single Accountable Team</span>
+          </div>
+        </div>
+      </div>
+      <div class="services-close reveal">
+        <h3>See it. Design it. Build it. Make it work.</h3>
+        <p>ServDesigns brings design, business strategy, technology and AI together to help you move from an unclear problem to something real, useful and ready to scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about" class="about-section">
+    <div class="wrap">
+      <div class="kicker reveal" style="color:var(--signal);"><span class="dash" style="background:var(--signal);"></span>// 04 — About Us</div>
+      <div class="about-intro reveal">
+        <h2>A small studio, backed by real delivery experience.</h2>
+        <p>ServDesigns is a service and systems design studio based in Edinburgh — part of a broader design and software consulting venture. We're intentionally small: a focused team that acts as a genuine partner to the businesses we work with, not one account among hundreds.</p>
+      </div>
+      <div class="founder-grid reveal">
+        <div class="founder-avatar">SA</div>
+        <div>
+          <h3 class="founder-name">Shweta Amale</h3>
+          <span class="founder-role">Founder, ServDesigns</span>
+          <div class="founder-bio">
+            <p>15+ years of experience delivering transformation initiatives across global markets — leading complex programmes where design, operations and technology meet.</p>
+            <p>Supported by experienced entrepreneurs and industry advisors, ServDesigns brings together design expertise, business thinking and delivery capability to turn ideas into solutions that work in the real world.</p>
+          </div>
+          <div class="founder-links">
+            <a href="https://www.linkedin.com/in/shwetaamale/" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="facts-strip reveal">
+        <div class="facts-grid">
+          <div class="fact"><span class="flabel">Industry</span><span class="fval">IT Services &amp; IT Consulting</span></div>
+          <div class="fact"><span class="flabel">Company Size</span><span class="fval">2–10 Employees</span></div>
+          <div class="fact"><span class="flabel">Headquarters</span><span class="fval">Edinburgh, Scotland</span></div>
+          <div class="fact"><span class="flabel">Studio Model</span><span class="fval">Part of a Design &amp; Software Consulting Venture</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band" id="contact" style="padding:0;">
+    <div class="wrap cta-inner">
+      <div class="kicker reveal" style="color:var(--ink);"><span class="dash" style="background:var(--ink);"></span>// 05 — Get In Touch</div>
+      <h2 class="reveal">Think we can help your business? Send us a message.</h2>
+      <p class="reveal">Tell us what's not connecting — we'll get in touch to talk through how ServDesigns can help.</p>
+      <div class="cta-actions reveal">
+        <a href="mailto:hello@servdesigns.com" class="btn btn-primary">Email hello@servdesigns.com</a>
+        <a href="https://www.linkedin.com/in/shwetaamale/" target="_blank" rel="noopener" class="btn btn-ghost">Message on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="logo"><span class="dot"></span>ServDesigns</a>
+        <p class="footer-tag">Service &amp; systems design studio, based in Edinburgh.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Studio</h5>
+          <a href="#problem">Approach</a>
+          <a href="#services">How We Help</a>
+          <a href="#about">About</a>
+        </div>
+        <div class="footer-col">
+          <h5>Get In Touch</h5>
+          <a href="mailto:hello@servdesigns.com">hello@servdesigns.com</a>
+          <a href="https://www.linkedin.com/in/shwetaamale/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> SERVDESIGNS — EDINBURGH, SCOTLAND</span>
+      <span>PART OF A DESIGN &amp; SOFTWARE CONSULTING VENTURE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header shadow on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Network diagram canvas — "the invisible operational network"
+  (function(){
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    const wrap = canvas.parentElement;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const nodes = [
+      {label:'People', x:0.20, y:0.24},
+      {label:'Process', x:0.62, y:0.14},
+      {label:'Technology', x:0.86, y:0.44},
+      {label:'Data', x:0.66, y:0.80},
+      {label:'Decisions', x:0.26, y:0.84},
+      {label:'AI', x:0.09, y:0.52},
+    ];
+    const edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[0,2],[1,3],[2,4],[3,5],[4,0],[5,1]];
+
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize(){
+      const rect = wrap.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function pos(n, t){
+      const bob = reducedMotion ? 0 : 1;
+      const px = n.x * w + Math.sin(t*0.0006 + n.x*10) * 7 * bob;
+      const py = n.y * h + Math.cos(t*0.0005 + n.y*10) * 7 * bob;
+      return [px, py];
+    }
+
+    function draw(t){
+      ctx.clearRect(0,0,w,h);
+      const coords = nodes.map(n => pos(n, t));
+
+      // edges
+      edges.forEach(([a,b], i) => {
+        const alpha = reducedMotion ? 0.35 : (0.18 + 0.22 * (0.5 + 0.5*Math.sin(t*0.0009 + i)));
+        ctx.strokeStyle = `rgba(61,75,250,${alpha.toFixed(3)})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(coords[a][0], coords[a][1]);
+        ctx.lineTo(coords[b][0], coords[b][1]);
+        ctx.stroke();
+      });
+
+      // nodes
+      nodes.forEach((n, i) => {
+        const [x,y] = coords[i];
+        const isAI = n.label === 'AI';
+        ctx.beginPath();
+        ctx.arc(x, y, isAI ? 7 : 5.5, 0, Math.PI*2);
+        ctx.fillStyle = isAI ? '#c6ff4d' : '#3d4bfa';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x, y, isAI ? 13 : 10, 0, Math.PI*2);
+        ctx.strokeStyle = isAI ? 'rgba(198,255,77,0.4)' : 'rgba(61,75,250,0.28)';
+        ctx.stroke();
+
+        ctx.font = '11px "Space Mono", monospace';
+        ctx.fillStyle = '#0d0f0b';
+        ctx.textAlign = x > w*0.7 ? 'right' : (x < w*0.3 ? 'left' : 'center');
+        ctx.fillText(n.label.toUpperCase(), x, y - 16);
+      });
+    }
+
+    if (reducedMotion) {
+      draw(0);
+    } else {
+      function loop(t){ draw(t); requestAnimationFrame(loop); }
+      requestAnimationFrame(loop);
+    }
+  })();
+</script>
+
+</body>
+</html>
