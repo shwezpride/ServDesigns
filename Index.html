@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0d0f0b;
-    --muted:#5b5848;
-    --paper:#f4f2ea;
-    --paper-2:#eae6d8;
-    --line:#d7d2bf;
-    --accent:#3d4bfa;
-    --accent-2:#1f27b8;
-    --signal:#c6ff4d;
+    --ink:#12203f;
+    --muted:#5c6b85;
+    --paper:#f7f9fc;
+    --paper-2:#c7d2e3;
+    --line:#aab8ce;
+    --accent:#e8a93b;
+    --accent-2:#c9902e;
+    --signal:#e8a93b;
     --radius:2px;
     --maxw:1280px;
   }
@@ -87,7 +87,7 @@
   /* NAV */
   header{
     position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(244,242,234,0.86);
+    background:rgba(247,249,252,0.86);
     backdrop-filter:saturate(180%) blur(10px);
     border-bottom:1px solid transparent;
     transition:border-color .25s ease;
@@ -117,7 +117,7 @@
   /* HERO */
   .hero{padding:160px 0 80px;position:relative;overflow:hidden;}
   .hero-grid{
-    display:grid;grid-template-columns:1.5fr 0.5fr;gap:40px;align-items:center;position:relative;
+    display:grid;grid-template-columns:1.5fr 0.5fr;gap:40px;align-items:start;position:relative;
   }
   .hero-manifesto{
     font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;
@@ -139,12 +139,12 @@
   .hero-meta span:not(:last-child)::after{content:'·';margin-left:14px;color:var(--line);}
   .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
   .hero-canvas-wrap{
-    position:relative;aspect-ratio:4/5;max-width:340px;margin-left:auto;border:1px solid var(--line);background:var(--paper-2);
+    position:relative;aspect-ratio:1/1;max-width:230px;margin-left:auto;margin-right:0;border:1px solid rgba(18,32,63,0.22);background:#c7d2e3;
   }
   .hero-canvas-wrap::before{
-    content:'FIG. 01 — THE OPERATIONAL NETWORK';
-    position:absolute;top:14px;left:14px;font-family:'Space Mono',monospace;font-size:10.5px;
-    letter-spacing:.06em;color:var(--muted);z-index:2;text-transform:uppercase;
+    content:'FIG. 01 — NETWORK';
+    position:absolute;top:12px;left:12px;font-family:'Space Mono',monospace;font-size:9px;
+    letter-spacing:.05em;color:#12203f;opacity:.65;z-index:2;text-transform:uppercase;white-space:nowrap;
   }
   #networkCanvas{width:100%;height:100%;display:block;}
 
@@ -293,23 +293,23 @@
     border-left:3px solid var(--signal);
   }
   .founder-belief{
-    font-size:16px;color:#c9c6b8;max-width:640px;line-height:1.65;margin-bottom:44px;
+    font-size:16px;color:#a9b7cc;max-width:640px;line-height:1.65;margin-bottom:44px;
   }
   .founder-grid{display:grid;grid-template-columns:180px 1fr;gap:44px;align-items:start;}
   .founder-avatar{
-    width:180px;height:180px;border:1px solid rgba(244,242,234,.25);
+    width:180px;height:180px;border:1px solid rgba(247,249,252,.25);
     display:flex;align-items:center;justify-content:center;
     font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:700;color:var(--signal);
     background:
-      repeating-linear-gradient(135deg, rgba(198,255,77,0.06) 0px, rgba(198,255,77,0.06) 1px, transparent 1px, transparent 14px);
+      repeating-linear-gradient(135deg, rgba(232,169,59,0.08) 0px, rgba(232,169,59,0.08) 1px, transparent 1px, transparent 14px);
     flex:none;
   }
   .founder-name{font-size:24px;margin-bottom:6px;color:var(--paper);}
   .founder-role{font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--signal);margin-bottom:20px;display:block;}
-  .founder-bio{color:#c9c6b8;font-size:15.5px;max-width:640px;line-height:1.65;}
+  .founder-bio{color:#a9b7cc;font-size:15.5px;max-width:640px;line-height:1.65;}
   .founder-bio p+p{margin-top:14px;}
   .founder-links{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
-  .founder-section .btn-ghost{border-color:rgba(244,242,234,.4);color:var(--paper);}
+  .founder-section .btn-ghost{border-color:rgba(247,249,252,.4);color:var(--paper);}
   .founder-section .btn-ghost:hover{background:var(--paper);color:var(--ink);}
   @media (max-width:640px){.founder-grid{grid-template-columns:1fr;}.founder-avatar{width:110px;height:110px;font-size:30px;}}
 
@@ -319,7 +319,7 @@
   .cta-band h2{font-size:clamp(30px,5vw,54px);max-width:780px;line-height:1.08;}
   .cta-band p{margin-top:20px;color:var(--ink);font-size:17px;max-width:520px;opacity:.8;}
   .cta-actions{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
-  .cta-band .btn-primary:hover{background:var(--ink);box-shadow:4px 4px 0 rgba(13,15,11,.3);}
+  .cta-band .btn-primary:hover{background:var(--ink);box-shadow:4px 4px 0 rgba(18,32,63,.3);}
   .cta-band .btn-ghost{border-color:var(--ink);}
 
   footer{padding:60px 0 36px;}
@@ -335,7 +335,7 @@
 
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;}
-    .hero-canvas-wrap{aspect-ratio:16/10;max-width:none;margin-left:0;order:-1;}
+    .hero-canvas-wrap{aspect-ratio:1/1;max-width:260px;margin:0 auto;order:-1;}
     .diagram-split{grid-template-columns:1fr;}
     .diagram-pane:first-child{border-right:none;border-bottom:1px solid var(--line);}
     .outcome-transition{white-space:normal;}
@@ -383,9 +383,9 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <div class="hero-manifesto"><span class="dash"></span>We connect what other teams separate</div>
+          <div class="hero-manifesto"><span class="dash"></span>Design the service. Connect the system. Make it work.</div>
           <h1>We make invisible systems visible.</h1>
-          <p class="hero-sub">Behind every customer experience lies a network of people, services, processes, technology, decisions, data — and increasingly, AI. ServDesigns helps businesses understand what's really happening, then design and deliver better ways to work, serve customers and build products — grounded in research, not guesswork.</p>
+          <p class="hero-sub">Behind every service is a system of people, processes, technology, data and decisions. We make that system visible, design what needs to change, and help build it.</p>
           <div class="hero-arch">
             <span class="step">See it.</span><span class="sep">/</span>
             <span class="step">Design it.</span><span class="sep">/</span>
@@ -437,12 +437,12 @@
         <div class="net-surface">
           <span class="stage-label">What the customer sees</span>
           <svg viewBox="0 0 800 50" preserveAspectRatio="none" class="net-surface-svg">
-            <line x1="20" y1="25" x2="780" y2="25" stroke="#d7d2bf" stroke-width="1.5" stroke-dasharray="1 7"/>
-            <circle cx="40" cy="25" r="5" fill="#3d4bfa"/>
-            <circle cx="230" cy="25" r="5" fill="#3d4bfa"/>
-            <circle cx="420" cy="25" r="5" fill="#3d4bfa"/>
-            <circle cx="610" cy="25" r="5" fill="#3d4bfa"/>
-            <circle cx="770" cy="25" r="5" fill="#3d4bfa"/>
+            <line x1="20" y1="25" x2="780" y2="25" stroke="#aab8ce" stroke-width="1.5" stroke-dasharray="1 7"/>
+            <circle cx="40" cy="25" r="5" fill="#12203f"/>
+            <circle cx="230" cy="25" r="5" fill="#12203f"/>
+            <circle cx="420" cy="25" r="5" fill="#12203f"/>
+            <circle cx="610" cy="25" r="5" fill="#12203f"/>
+            <circle cx="770" cy="25" r="5" fill="#12203f"/>
           </svg>
           <div class="net-surface-labels">
             <span>Website</span><span>Form</span><span>Email</span><span>Support</span><span>Outcome</span>
@@ -450,14 +450,14 @@
         </div>
         <div class="net-wave">
           <svg viewBox="0 0 800 36" preserveAspectRatio="none">
-            <path d="M0,18 C100,32 200,4 300,20 C400,34 500,6 600,20 C680,30 740,10 800,18 L800,36 L0,36 Z" fill="#0d0f0b"/>
+            <path d="M0,18 C100,32 200,4 300,20 C400,34 500,6 600,20 C680,30 740,10 800,18 L800,36 L0,36 Z" fill="#12203f"/>
           </svg>
           <span class="net-wave-label">▾ beneath the surface ▾</span>
         </div>
         <div class="net-depth">
           <span class="stage-label">What's actually running underneath</span>
           <svg viewBox="0 0 800 260" class="net-depth-svg">
-            <g stroke="rgba(244,242,234,0.18)" stroke-width="1">
+            <g stroke="rgba(199,210,227,0.18)" stroke-width="1">
               <line x1="90" y1="120" x2="230" y2="55"/>
               <line x1="230" y1="55" x2="380" y2="130"/>
               <line x1="380" y1="130" x2="540" y2="65"/>
@@ -470,16 +470,16 @@
               <line x1="140" y1="185" x2="380" y2="130"/>
               <line x1="230" y1="55" x2="430" y2="205"/>
             </g>
-            <g font-family="'Space Mono', monospace" font-size="11" fill="#f4f2ea" text-anchor="middle">
-              <circle cx="90" cy="120" r="5" fill="#3d4bfa"/><text x="90" y="104">PEOPLE</text>
-              <circle cx="230" cy="55" r="5" fill="#3d4bfa"/><text x="230" y="39">POLICY</text>
-              <circle cx="380" cy="130" r="5" fill="#3d4bfa"/><text x="380" y="114">PROCESS</text>
-              <circle cx="540" cy="65" r="5" fill="#3d4bfa"/><text x="540" y="49">DATA</text>
-              <circle cx="690" cy="120" r="5" fill="#3d4bfa"/><text x="690" y="104">TECHNOLOGY</text>
-              <circle cx="620" cy="195" r="5" fill="#3d4bfa"/><text x="620" y="215">DECISIONS</text>
-              <circle cx="430" cy="205" r="5" fill="#3d4bfa"/><text x="430" y="225">TEAMS</text>
-              <circle cx="240" cy="185" r="5" fill="#3d4bfa"/><text x="240" y="205">INCENTIVES</text>
-              <circle cx="140" cy="185" r="7" fill="#c6ff4d"/><text x="140" y="205" fill="#c6ff4d" font-weight="700">AI</text>
+            <g font-family="'Space Mono', monospace" font-size="11" fill="#f7f9fc" text-anchor="middle">
+              <circle cx="90" cy="120" r="5" fill="#c7d2e3"/><text x="90" y="104">PEOPLE</text>
+              <circle cx="230" cy="55" r="5" fill="#c7d2e3"/><text x="230" y="39">POLICY</text>
+              <circle cx="380" cy="130" r="5" fill="#c7d2e3"/><text x="380" y="114">PROCESS</text>
+              <circle cx="540" cy="65" r="5" fill="#c7d2e3"/><text x="540" y="49">DATA</text>
+              <circle cx="690" cy="120" r="5" fill="#c7d2e3"/><text x="690" y="104">TECHNOLOGY</text>
+              <circle cx="620" cy="195" r="5" fill="#c7d2e3"/><text x="620" y="215">DECISIONS</text>
+              <circle cx="430" cy="205" r="5" fill="#c7d2e3"/><text x="430" y="225">TEAMS</text>
+              <circle cx="240" cy="185" r="5" fill="#c7d2e3"/><text x="240" y="205">INCENTIVES</text>
+              <circle cx="140" cy="185" r="7" fill="#e8a93b"/><text x="140" y="205" fill="#e8a93b" font-weight="700">AI</text>
             </g>
           </svg>
         </div>
@@ -489,23 +489,23 @@
         <div class="diagram-pane before">
           <span class="tag">Before — Disconnected</span>
           <svg viewBox="0 0 300 420" class="thread-svg">
-            <g stroke="#a9a48d" stroke-width="1.2" stroke-dasharray="3 5" fill="none">
+            <g stroke="#93a4bd" stroke-width="1.2" stroke-dasharray="3 5" fill="none">
               <path d="M90,40 L220,120"/>
               <path d="M220,120 L70,210"/>
               <path d="M70,210 L230,300"/>
               <path d="M230,300 L100,390"/>
               <path d="M90,40 L230,300"/>
             </g>
-            <g font-family="'Space Mono', monospace" font-size="11" fill="#0d0f0b">
-              <circle cx="90" cy="40" r="5" fill="#5b5848"/><circle cx="90" cy="40" r="10" fill="none" stroke="#d7d2bf"/>
+            <g font-family="'Space Mono', monospace" font-size="11" fill="#12203f">
+              <circle cx="90" cy="40" r="5" fill="#5c6b85"/><circle cx="90" cy="40" r="10" fill="none" stroke="#aab8ce"/>
               <text x="106" y="44">CUSTOMER</text>
-              <circle cx="220" cy="120" r="5" fill="#5b5848"/><circle cx="220" cy="120" r="10" fill="none" stroke="#d7d2bf"/>
+              <circle cx="220" cy="120" r="5" fill="#5c6b85"/><circle cx="220" cy="120" r="10" fill="none" stroke="#aab8ce"/>
               <text x="150" y="105" text-anchor="end">WEBSITE</text>
-              <circle cx="70" cy="210" r="5" fill="#5b5848"/><circle cx="70" cy="210" r="10" fill="none" stroke="#d7d2bf"/>
+              <circle cx="70" cy="210" r="5" fill="#5c6b85"/><circle cx="70" cy="210" r="10" fill="none" stroke="#aab8ce"/>
               <text x="86" y="214">OPERATIONS</text>
-              <circle cx="230" cy="300" r="5" fill="#5b5848"/><circle cx="230" cy="300" r="10" fill="none" stroke="#d7d2bf"/>
+              <circle cx="230" cy="300" r="5" fill="#5c6b85"/><circle cx="230" cy="300" r="10" fill="none" stroke="#aab8ce"/>
               <text x="160" y="285" text-anchor="end">SUPPORT</text>
-              <circle cx="100" cy="390" r="5" fill="#5b5848"/><circle cx="100" cy="390" r="10" fill="none" stroke="#d7d2bf"/>
+              <circle cx="100" cy="390" r="5" fill="#5c6b85"/><circle cx="100" cy="390" r="10" fill="none" stroke="#aab8ce"/>
               <text x="116" y="394">TECHNOLOGY</text>
             </g>
           </svg>
@@ -514,13 +514,13 @@
         <div class="diagram-pane after">
           <span class="tag">After — Connected</span>
           <svg viewBox="0 0 300 420" class="thread-svg">
-            <path d="M150,35 C120,75 65,95 95,135 C125,175 120,190 150,230 C180,270 175,285 205,325 C235,365 180,385 150,405" fill="none" stroke="#3d4bfa" stroke-width="2.5" stroke-linecap="round"/>
-            <g font-family="'Space Mono', monospace" font-size="11" fill="#0d0f0b" text-anchor="middle">
-              <circle cx="150" cy="35" r="6" fill="#3d4bfa"/><text x="150" y="18">CUSTOMER NEEDS</text>
-              <circle cx="95" cy="135" r="6" fill="#3d4bfa"/><text x="95" y="118">SERVICE</text>
-              <circle cx="150" cy="230" r="6" fill="#3d4bfa"/><text x="150" y="213">PEOPLE + PROCESS</text>
-              <circle cx="205" cy="325" r="6" fill="#3d4bfa"/><text x="205" y="308">TECHNOLOGY + DATA</text>
-              <circle cx="150" cy="405" r="7" fill="#c6ff4d" stroke="#0d0f0b"/><text x="150" y="388" font-weight="700">BUSINESS OUTCOMES</text>
+            <path d="M150,35 C120,75 65,95 95,135 C125,175 120,190 150,230 C180,270 175,285 205,325 C235,365 180,385 150,405" fill="none" stroke="#12203f" stroke-width="2.5" stroke-linecap="round"/>
+            <g font-family="'Space Mono', monospace" font-size="11" fill="#12203f" text-anchor="middle">
+              <circle cx="150" cy="35" r="6" fill="#12203f"/><text x="150" y="18">CUSTOMER NEEDS</text>
+              <circle cx="95" cy="135" r="6" fill="#12203f"/><text x="95" y="118">SERVICE</text>
+              <circle cx="150" cy="230" r="6" fill="#12203f"/><text x="150" y="213">PEOPLE + PROCESS</text>
+              <circle cx="205" cy="325" r="6" fill="#12203f"/><text x="205" y="308">TECHNOLOGY + DATA</text>
+              <circle cx="150" cy="405" r="7" fill="#e8a93b" stroke="#12203f"/><text x="150" y="388" font-weight="700">BUSINESS OUTCOMES</text>
             </g>
           </svg>
           <p class="flow-caption accent">We design the connections between them.</p>
@@ -660,11 +660,11 @@
       </div>
       <div class="pillars-bridge reveal">
         <svg viewBox="0 0 600 24" preserveAspectRatio="none">
-          <line x1="0" y1="12" x2="600" y2="12" stroke="#3d4bfa" stroke-width="1.5"/>
-          <circle cx="75" cy="12" r="4" fill="#3d4bfa"/>
-          <circle cx="225" cy="12" r="4" fill="#3d4bfa"/>
-          <circle cx="375" cy="12" r="4" fill="#3d4bfa"/>
-          <circle cx="525" cy="12" r="4" fill="#3d4bfa"/>
+          <line x1="0" y1="12" x2="600" y2="12" stroke="#e8a93b" stroke-width="1.5"/>
+          <circle cx="75" cy="12" r="4" fill="#e8a93b"/>
+          <circle cx="225" cy="12" r="4" fill="#e8a93b"/>
+          <circle cx="375" cy="12" r="4" fill="#e8a93b"/>
+          <circle cx="525" cy="12" r="4" fill="#e8a93b"/>
         </svg>
       </div>
       <p class="pillars-statement reveal">One accountable partner instead of four disconnected suppliers.</p>
@@ -839,8 +839,8 @@
 
       // edges
       edges.forEach(([a,b], i) => {
-        const alpha = reducedMotion ? 0.35 : (0.18 + 0.22 * (0.5 + 0.5*Math.sin(t*0.0009 + i)));
-        ctx.strokeStyle = `rgba(61,75,250,${alpha.toFixed(3)})`;
+        const alpha = reducedMotion ? 0.4 : (0.22 + 0.26 * (0.5 + 0.5*Math.sin(t*0.0009 + i)));
+        ctx.strokeStyle = `rgba(18,32,63,${alpha.toFixed(3)})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(coords[a][0], coords[a][1]);
@@ -854,15 +854,15 @@
         const isAI = n.label === 'AI';
         ctx.beginPath();
         ctx.arc(x, y, isAI ? 7 : 5.5, 0, Math.PI*2);
-        ctx.fillStyle = isAI ? '#c6ff4d' : '#3d4bfa';
+        ctx.fillStyle = isAI ? '#e8a93b' : '#12203f';
         ctx.fill();
         ctx.beginPath();
         ctx.arc(x, y, isAI ? 13 : 10, 0, Math.PI*2);
-        ctx.strokeStyle = isAI ? 'rgba(198,255,77,0.4)' : 'rgba(61,75,250,0.28)';
+        ctx.strokeStyle = isAI ? 'rgba(232,169,59,0.45)' : 'rgba(18,32,63,0.3)';
         ctx.stroke();
 
         ctx.font = '11px "Space Mono", monospace';
-        ctx.fillStyle = '#0d0f0b';
+        ctx.fillStyle = '#12203f';
         ctx.textAlign = x > w*0.7 ? 'right' : (x < w*0.3 ? 'left' : 'center');
         ctx.fillText(n.label.toUpperCase(), x, y - 16);
       });
