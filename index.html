@@ -116,9 +116,7 @@
 
   /* HERO */
   .hero{padding:160px 0 80px;position:relative;overflow:hidden;}
-  .hero-grid{
-    display:grid;grid-template-columns:1.5fr 0.5fr;gap:40px;align-items:start;position:relative;
-  }
+  .hero-inner{max-width:880px;}
   .hero-manifesto{
     font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;
     color:var(--accent);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px;
@@ -132,21 +130,7 @@
   }
   .hero-arch span.step{color:var(--ink);}
   .hero-arch span.sep{color:var(--line);}
-  .hero-meta{
-    margin-top:34px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.05em;display:flex;gap:14px;flex-wrap:wrap;
-  }
-  .hero-meta span:not(:last-child)::after{content:'·';margin-left:14px;color:var(--line);}
   .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
-  .hero-canvas-wrap{
-    position:relative;aspect-ratio:1/1;max-width:230px;margin-left:auto;margin-right:0;border:1px solid rgba(18,32,63,0.22);background:#c7d2e3;
-  }
-  .hero-canvas-wrap::before{
-    content:'FIG. 01 — NETWORK';
-    position:absolute;top:12px;left:12px;font-family:'Space Mono',monospace;font-size:9px;
-    letter-spacing:.05em;color:#12203f;opacity:.65;z-index:2;text-transform:uppercase;white-space:nowrap;
-  }
-  #networkCanvas{width:100%;height:100%;display:block;}
 
   /* MARQUEE */
   .marquee{
@@ -163,61 +147,56 @@
   @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
   section{padding:100px 0;position:relative;}
+  .bg-alt{background:var(--paper-2);}
   .section-head{max-width:680px;margin-bottom:52px;}
   .section-head h2{font-size:clamp(26px,3.2vw,38px);line-height:1.18;}
   .section-head p{margin-top:16px;font-size:16px;color:var(--muted);}
 
-  /* PROBLEM */
+  /* CHALLENGE */
   .lead-statement{
     font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3vw,34px);
     line-height:1.3;max-width:900px;margin-bottom:36px;
   }
   .lead-statement em{font-style:normal;color:var(--accent);}
   .reframe-block{max-width:640px;margin-bottom:56px;}
-  .reframe-block .rf-lead{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
+  .reframe-block .rf-lead{display:block;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
   .reframe-list{display:flex;flex-direction:column;gap:12px;margin-bottom:18px;}
   .reframe-list p{font-size:15.5px;color:var(--muted);padding-left:22px;position:relative;}
   .reframe-list p::before{content:'→';position:absolute;left:0;color:var(--accent);font-family:'Space Mono',monospace;}
   .reframe-close{font-size:16px;font-weight:600;color:var(--ink);}
 
-  /* SIGNATURE VISUAL — the network made visible (frontstage / backstage) */
-  .net-diagram{border:1px solid var(--line);margin-bottom:24px;overflow:hidden;}
-  .stage-label{
-    font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-    color:var(--muted);display:block;
+  /* BEFORE / AFTER — scattered vs connected */
+  .compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);}
+  .compare-pane{display:flex;flex-direction:column;}
+  .compare-pane:first-child{border-right:1px solid var(--line);}
+  .compare-pane .tag{
+    font-family:'Space Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);display:block;padding:28px 32px 0;
   }
-  .net-surface{padding:32px 36px 0;background:var(--paper);}
-  .net-surface-svg{width:100%;height:auto;display:block;margin-top:18px;}
-  .net-surface-labels{
-    display:flex;justify-content:space-between;gap:6px;
-    font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
-    color:var(--muted);padding:8px 0 26px;
-  }
-  .net-wave{position:relative;line-height:0;}
-  .net-wave svg{display:block;width:100%;height:auto;}
-  .net-wave-label{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);line-height:normal;
-    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--paper);
-    text-transform:uppercase;white-space:nowrap;background:var(--ink);padding:5px 12px;border-radius:20px;
-  }
-  .net-depth{padding:26px 36px 34px;background:var(--ink);}
-  .net-depth .stage-label{color:var(--signal);margin-bottom:6px;}
-  .net-depth-svg{width:100%;height:auto;display:block;}
+  .compare-pane.after .tag{color:var(--accent);}
+  .compare-svg{width:100%;height:auto;display:block;}
+  .compare-caption{font-size:13px;color:var(--muted);text-align:center;line-height:1.5;padding:0 40px 32px;margin-top:auto;}
+  .compare-caption.accent{font-size:15px;color:var(--accent-2);font-weight:700;}
 
-  /* BEFORE / AFTER — tangled thread vs. woven thread */
-  .diagram-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-top:none;}
-  .diagram-pane{padding:30px 30px 8px;position:relative;}
-  .diagram-pane:first-child{border-right:1px solid var(--line);}
-  .diagram-pane .tag{
-    font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-    color:var(--muted);margin-bottom:4px;display:block;
-  }
-  .diagram-pane.after .tag{color:var(--accent);}
-  .thread-svg{width:100%;height:auto;display:block;}
-  .flow-caption{font-size:13px;color:var(--muted);margin-top:6px;text-align:center;line-height:1.5;}
-  .flow-caption.accent{color:var(--accent);font-weight:700;font-size:15px;}
+  /* WHAT CHANGES */
+  .outcomes-list{border-top:1px solid var(--line);}
+  .outcome-row{display:grid;grid-template-columns:280px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+  .outcome-transition{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;white-space:nowrap;}
+  .outcome-transition .from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line);}
+  .outcome-transition .arrow{color:var(--accent);margin:0 8px;}
+  .outcome-row p{font-size:15px;color:var(--muted);}
+  @media (max-width:640px){.outcome-row{grid-template-columns:1fr;gap:8px;}}
 
-  /* HOW WE HELP — flow */
+  /* WHO WE HELP */
+  .partner-list{border-top:1px solid var(--line);}
+  .partner-row{
+    display:flex;align-items:center;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .partner-row .pnum{font-family:'Space Mono',monospace;color:var(--accent);font-size:13px;min-width:28px;}
+  .partner-row .arrow{font-family:'Space Mono',monospace;color:var(--muted);}
+  .partner-row p{font-size:16.5px;font-weight:500;}
+
+  /* HOW WE SOLVE — flow */
   .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   .flow-card{background:var(--paper);padding:30px 26px;display:flex;flex-direction:column;position:relative;}
   .flow-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);}
@@ -238,20 +217,8 @@
 
   .section-close{
     margin-top:52px;padding-top:44px;border-top:1px solid var(--line);
-    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:end;
   }
   .section-close h3{font-size:clamp(22px,3vw,30px);letter-spacing:-0.01em;}
-  .section-close p{font-size:15px;color:var(--muted);max-width:440px;}
-  @media (max-width:760px){.section-close{grid-template-columns:1fr;gap:16px;}}
-
-  /* WHO WE HELP */
-  .partner-list{border-top:1px solid var(--line);}
-  .partner-row{
-    display:flex;align-items:center;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);
-  }
-  .partner-row .pnum{font-family:'Space Mono',monospace;color:var(--accent);font-size:13px;min-width:28px;}
-  .partner-row .arrow{font-family:'Space Mono',monospace;color:var(--muted);}
-  .partner-row p{font-size:16.5px;font-weight:500;}
 
   /* WHAT WE BRING TO THE TABLE */
   .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:0;}
@@ -262,29 +229,20 @@
   .pillar-tags{display:flex;flex-wrap:wrap;gap:6px;}
   .pillar-tag{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;color:var(--muted);}
   .pillar-tag:not(:last-child)::after{content:' ·';color:var(--line);}
-  .pillars-connector{
-    height:1px;background:var(--accent);margin:0 0 0 0;position:relative;
-  }
   .pillars-bridge{display:flex;justify-content:center;padding:18px 0;}
   .pillars-bridge svg{width:100%;max-width:600px;height:24px;}
   .pillars-statement{
     text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:600;
     font-size:clamp(20px,2.6vw,28px);margin-top:8px;padding-top:8px;
   }
+  .pillars-sub{text-align:center;font-size:15px;color:var(--muted);max-width:720px;margin:10px auto 0;}
   @media (max-width:900px){.pillars-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:560px){.pillars-grid{grid-template-columns:1fr;}}
 
-  /* OUTCOMES */
-  .outcomes-list{border-top:1px solid var(--line);}
-  .outcome-row{display:grid;grid-template-columns:280px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline;}
-  .outcome-transition{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;white-space:nowrap;}
-  .outcome-transition .from{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line);}
-  .outcome-transition .arrow{color:var(--accent);margin:0 8px;}
-  .outcome-row p{font-size:15px;color:var(--muted);}
-  @media (max-width:640px){.outcome-row{grid-template-columns:1fr;gap:8px;}}
-
   /* FOUNDER */
   .founder-section{background:var(--ink);color:var(--paper);}
+  .founder-section .kicker{color:var(--signal);}
+  .founder-section .kicker .dash{background:var(--signal);}
   .founder-intro{max-width:700px;margin-bottom:44px;}
   .founder-intro h2{color:var(--paper);font-size:clamp(26px,3.2vw,36px);line-height:1.18;}
   .pull-quote{
@@ -315,6 +273,8 @@
 
   /* CTA */
   .cta-band{background:var(--signal);}
+  .cta-band .kicker{color:var(--ink);}
+  .cta-band .kicker .dash{background:var(--ink);}
   .cta-inner{padding:96px 0;text-align:left;position:relative;}
   .cta-band h2{font-size:clamp(30px,5vw,54px);max-width:780px;line-height:1.08;}
   .cta-band p{margin-top:20px;color:var(--ink);font-size:17px;max-width:520px;opacity:.8;}
@@ -326,18 +286,20 @@
   .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:44px;}
   .footer-tag{max-width:360px;color:var(--muted);font-size:14px;margin-top:14px;}
   .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
-  .footer-col h5{font-family:'Space Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px;}
+  .footer-col h5{font-family:'Space Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 16px;}
   .footer-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;}
   .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);padding-top:26px;border-top:1px solid var(--line);}
 
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .marquee-track,.logo .dot{animation:none;}
+  }
 
   @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-canvas-wrap{aspect-ratio:1/1;max-width:260px;margin:0 auto;order:-1;}
-    .diagram-split{grid-template-columns:1fr;}
-    .diagram-pane:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    .compare{grid-template-columns:1fr;}
+    .compare-pane:first-child{border-right:none;border-bottom:1px solid var(--line);}
     .outcome-transition{white-space:normal;}
     .nav-links{position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--paper);flex-direction:column;justify-content:flex-start;padding:36px 40px;gap:22px;transform:translateX(100%);transition:transform .25s ease;}
     .nav-links.open{transform:translateX(0);}
@@ -351,8 +313,8 @@
     .founder-grid{gap:24px;}
     .cta-inner{padding:60px 0;}
     .footer-top{flex-direction:column;}
-    .net-surface,.net-depth{padding-left:22px;padding-right:22px;}
-    .diagram-pane{padding-left:22px;padding-right:22px;}
+    .compare-pane .tag{padding-left:22px;padding-right:22px;}
+    .compare-caption{padding-left:22px;padding-right:22px;}
   }
 </style>
 </head>
@@ -381,24 +343,19 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-manifesto"><span class="dash"></span>Design the service. Connect the system. Make it work.</div>
-          <h1>We make invisible systems visible.</h1>
-          <p class="hero-sub">Behind every service is a system of people, processes, technology, data and decisions. We make that system visible, design what needs to change, and help build it.</p>
-          <div class="hero-arch">
-            <span class="step">See it.</span><span class="sep">/</span>
-            <span class="step">Design it.</span><span class="sep">/</span>
-            <span class="step">Build it.</span><span class="sep">/</span>
-            <span class="step">Make it work.</span>
-          </div>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Start a conversation</a>
-            <a href="#problem" class="btn btn-ghost">See the problem</a>
-          </div>
+      <div class="hero-inner">
+        <div class="hero-manifesto"><span class="dash"></span>Design the service. Connect the system. Make it work.</div>
+        <h1>We make invisible systems visible.</h1>
+        <p class="hero-sub">Behind every service is a system of people, processes, technology, data and decisions. We make that system visible, design what needs to change, and help build it.</p>
+        <div class="hero-arch">
+          <span class="step">See it.</span><span class="sep">/</span>
+          <span class="step">Design it.</span><span class="sep">/</span>
+          <span class="step">Build it.</span><span class="sep">/</span>
+          <span class="step">Live it.</span>
         </div>
-        <div class="hero-canvas-wrap">
-          <canvas id="networkCanvas"></canvas>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Start a conversation</a>
+          <a href="#problem" class="btn btn-ghost">See the challenge</a>
         </div>
       </div>
     </div>
@@ -411,15 +368,15 @@
     </div>
   </div>
 
-  <!-- PROBLEM -->
+  <!-- 01 THE CHALLENGE -->
   <section id="problem">
     <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 01 — The Problem</div>
+      <div class="kicker reveal"><span class="dash"></span>// 01 — The challenge</div>
 
       <p class="lead-statement reveal">Businesses experience friction, inefficiency, inconsistent experiences and missed opportunities — <em>not because they lack ideas, but because their operational systems were never designed to connect.</em></p>
 
       <div class="reframe-block reveal">
-        <span class="rf-lead">The problem you see isn't always the problem you need to solve</span>
+        <span class="rf-lead">The challenge you see isn't always the one you need to solve</span>
         <div class="reframe-list">
           <p>A difficult customer journey might actually be a broken process.</p>
           <p>A slow team might actually have a fragmented system.</p>
@@ -429,108 +386,107 @@
         <p class="reframe-close">We look beneath the surface.</p>
       </div>
 
-      <div class="net-diagram reveal">
-        <div class="net-surface">
-          <span class="stage-label">What the customer sees</span>
-          <svg viewBox="0 0 800 50" preserveAspectRatio="none" class="net-surface-svg">
-            <line x1="20" y1="25" x2="780" y2="25" stroke="#aab8ce" stroke-width="1.5" stroke-dasharray="1 7"/>
-            <circle cx="40" cy="25" r="5" fill="#12203f"/>
-            <circle cx="230" cy="25" r="5" fill="#12203f"/>
-            <circle cx="420" cy="25" r="5" fill="#12203f"/>
-            <circle cx="610" cy="25" r="5" fill="#12203f"/>
-            <circle cx="770" cy="25" r="5" fill="#12203f"/>
-          </svg>
-          <div class="net-surface-labels">
-            <span>Website</span><span>Form</span><span>Email</span><span>Support</span><span>Outcome</span>
-          </div>
-        </div>
-        <div class="net-wave">
-          <svg viewBox="0 0 800 36" preserveAspectRatio="none">
-            <path d="M0,18 C100,32 200,4 300,20 C400,34 500,6 600,20 C680,30 740,10 800,18 L800,36 L0,36 Z" fill="#12203f"/>
-          </svg>
-          <span class="net-wave-label">▾ beneath the surface ▾</span>
-        </div>
-        <div class="net-depth">
-          <span class="stage-label">What's actually running underneath</span>
-          <svg viewBox="0 0 800 260" class="net-depth-svg">
-            <g stroke="rgba(199,210,227,0.18)" stroke-width="1">
-              <line x1="90" y1="120" x2="230" y2="55"/>
-              <line x1="230" y1="55" x2="380" y2="130"/>
-              <line x1="380" y1="130" x2="540" y2="65"/>
-              <line x1="540" y1="65" x2="690" y2="120"/>
-              <line x1="690" y1="120" x2="620" y2="195"/>
-              <line x1="620" y1="195" x2="430" y2="205"/>
-              <line x1="430" y1="205" x2="240" y2="185"/>
-              <line x1="240" y1="185" x2="90" y2="120"/>
-              <line x1="90" y1="120" x2="140" y2="185"/>
-              <line x1="140" y1="185" x2="380" y2="130"/>
-              <line x1="230" y1="55" x2="430" y2="205"/>
-            </g>
-            <g font-family="'Space Mono', monospace" font-size="11" fill="#f7f9fc" text-anchor="middle">
-              <circle cx="90" cy="120" r="5" fill="#c7d2e3"/><text x="90" y="104">PEOPLE</text>
-              <circle cx="230" cy="55" r="5" fill="#c7d2e3"/><text x="230" y="39">POLICY</text>
-              <circle cx="380" cy="130" r="5" fill="#c7d2e3"/><text x="380" y="114">PROCESS</text>
-              <circle cx="540" cy="65" r="5" fill="#c7d2e3"/><text x="540" y="49">DATA</text>
-              <circle cx="690" cy="120" r="5" fill="#c7d2e3"/><text x="690" y="104">TECHNOLOGY</text>
-              <circle cx="620" cy="195" r="5" fill="#c7d2e3"/><text x="620" y="215">DECISIONS</text>
-              <circle cx="430" cy="205" r="5" fill="#c7d2e3"/><text x="430" y="225">TEAMS</text>
-              <circle cx="240" cy="185" r="5" fill="#c7d2e3"/><text x="240" y="205">INCENTIVES</text>
-              <circle cx="140" cy="185" r="7" fill="#e8a93b"/><text x="140" y="205" fill="#e8a93b" font-weight="700">AI</text>
-            </g>
-          </svg>
-        </div>
-      </div>
-
-      <div class="diagram-split reveal">
-        <div class="diagram-pane before">
+      <div class="compare reveal">
+        <div class="compare-pane before">
           <span class="tag">Before — Disconnected</span>
-          <svg viewBox="0 0 300 420" class="thread-svg">
-            <g stroke="#93a4bd" stroke-width="1.2" stroke-dasharray="3 5" fill="none">
-              <path d="M90,40 L220,120"/>
-              <path d="M220,120 L70,210"/>
-              <path d="M70,210 L230,300"/>
-              <path d="M230,300 L100,390"/>
-              <path d="M90,40 L230,300"/>
+          <svg viewBox="0 0 560 400" class="compare-svg" role="img" aria-label="Before: customer, people, process, AI, data and technology sit apart with broken links, and no line reaches the outcome.">
+            <g stroke="#aab8ce" stroke-width="1.5" stroke-dasharray="3 5" stroke-linecap="round">
+              <line x1="82" y1="88" x2="135" y2="80"/>
+              <line x1="172" y1="75" x2="218" y2="71"/>
+              <line x1="419" y1="114" x2="413" y2="180"/>
+              <line x1="408" y1="222" x2="402" y2="276"/>
+              <line x1="122" y1="255" x2="185" y2="233"/>
+              <line x1="222" y1="221" x2="286" y2="205"/>
             </g>
-            <g font-family="'Space Mono', monospace" font-size="11" fill="#12203f">
-              <circle cx="90" cy="40" r="5" fill="#5c6b85"/><circle cx="90" cy="40" r="10" fill="none" stroke="#aab8ce"/>
-              <text x="106" y="44">CUSTOMER</text>
-              <circle cx="220" cy="120" r="5" fill="#5c6b85"/><circle cx="220" cy="120" r="10" fill="none" stroke="#aab8ce"/>
-              <text x="150" y="105" text-anchor="end">WEBSITE</text>
-              <circle cx="70" cy="210" r="5" fill="#5c6b85"/><circle cx="70" cy="210" r="10" fill="none" stroke="#aab8ce"/>
-              <text x="86" y="214">OPERATIONS</text>
-              <circle cx="230" cy="300" r="5" fill="#5c6b85"/><circle cx="230" cy="300" r="10" fill="none" stroke="#aab8ce"/>
-              <text x="160" y="285" text-anchor="end">SUPPORT</text>
-              <circle cx="100" cy="390" r="5" fill="#5c6b85"/><circle cx="100" cy="390" r="10" fill="none" stroke="#aab8ce"/>
-              <text x="116" y="394">TECHNOLOGY</text>
+            <g font-family="'Space Mono', monospace" font-size="11" fill="#5c6b85" text-anchor="middle">
+              <circle cx="70" cy="90" r="6" fill="#93a4bd"/><text x="70" y="70">CUSTOMER</text>
+              <circle cx="230" cy="70" r="6" fill="#93a4bd"/><text x="230" y="50">PEOPLE</text>
+              <circle cx="420" cy="100" r="6" fill="#93a4bd"/><text x="420" y="80">PROCESS</text>
+              <circle cx="110" cy="260" r="6" fill="#93a4bd"/><text x="110" y="290">DATA</text>
+              <circle cx="400" cy="290" r="6" fill="#93a4bd"/><text x="400" y="320">TECHNOLOGY</text>
+              <circle cx="300" cy="200" r="6" fill="#e8a93b" opacity="0.6"/><text x="300" y="230" fill="#c9902e">AI</text>
+              <circle cx="500" cy="200" r="8" fill="none" stroke="#93a4bd" stroke-width="1.5" stroke-dasharray="2 3"/><text x="500" y="230">OUTCOME?</text>
             </g>
           </svg>
-          <p class="flow-caption">Different teams · different goals · duplicate data · manual workarounds · disconnected decisions</p>
+          <p class="compare-caption">Different teams · different goals · duplicate data · manual workarounds · disconnected decisions</p>
         </div>
-        <div class="diagram-pane after">
+        <div class="compare-pane after">
           <span class="tag">After — Connected</span>
-          <svg viewBox="0 0 300 420" class="thread-svg">
-            <path d="M150,35 C120,75 65,95 95,135 C125,175 120,190 150,230 C180,270 175,285 205,325 C235,365 180,385 150,405" fill="none" stroke="#12203f" stroke-width="2.5" stroke-linecap="round"/>
+          <svg viewBox="0 0 560 400" class="compare-svg" role="img" aria-label="After: customer, people, process, AI, data and technology are joined on one line that leads to the outcome.">
+            <path d="M50,220 C88,220 88,140 125,140 S163,220 200,220 S243,140 280,140 S323,220 360,220 S398,140 435,140 S473,220 510,220" fill="none" stroke="#12203f" stroke-width="2.5" stroke-linecap="round"/>
             <g font-family="'Space Mono', monospace" font-size="11" fill="#12203f" text-anchor="middle">
-              <circle cx="150" cy="35" r="6" fill="#12203f"/><text x="150" y="18">CUSTOMER NEEDS</text>
-              <circle cx="95" cy="135" r="6" fill="#12203f"/><text x="95" y="118">SERVICE</text>
-              <circle cx="150" cy="230" r="6" fill="#12203f"/><text x="150" y="213">PEOPLE + PROCESS</text>
-              <circle cx="205" cy="325" r="6" fill="#12203f"/><text x="205" y="308">TECHNOLOGY + DATA</text>
-              <circle cx="150" cy="405" r="7" fill="#e8a93b" stroke="#12203f"/><text x="150" y="388" font-weight="700">BUSINESS OUTCOMES</text>
+              <circle cx="50" cy="220" r="6" fill="#12203f"/><text x="50" y="250">CUSTOMER</text>
+              <circle cx="125" cy="140" r="6" fill="#12203f"/><text x="125" y="120">PEOPLE</text>
+              <circle cx="200" cy="220" r="6" fill="#12203f"/><text x="200" y="250">PROCESS</text>
+              <circle cx="280" cy="140" r="7" fill="#e8a93b"/><text x="280" y="120" fill="#c9902e" font-weight="700">AI</text>
+              <circle cx="360" cy="220" r="6" fill="#12203f"/><text x="360" y="250">DATA</text>
+              <circle cx="435" cy="140" r="6" fill="#12203f"/><text x="435" y="120">TECHNOLOGY</text>
+              <circle cx="510" cy="220" r="9" fill="#e8a93b" stroke="#12203f" stroke-width="1.5"/><text x="510" y="250" font-weight="700">OUTCOME</text>
             </g>
           </svg>
-          <p class="flow-caption accent">We design the connections between them.</p>
+          <p class="compare-caption accent">We design the connections between them.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW WE HELP -->
-  <section id="help" style="background:var(--paper-2);">
+  <!-- 02 WHAT CHANGES -->
+  <section class="bg-alt">
     <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 02 — How We Help</div>
+      <div class="kicker reveal"><span class="dash"></span>// 02 — What Changes</div>
       <div class="section-head reveal">
-        <h2>See it. Design it. Build it. Make it work.</h2>
+        <h2>What changes once the system is visible.</h2>
+      </div>
+      <div class="outcomes-list reveal">
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Fragmented</span><span class="arrow">→</span>Connected</span>
+          <p>Teams understand how the service actually works.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Assumptions</span><span class="arrow">→</span>Evidence</span>
+          <p>Decisions are grounded in customer and operational reality.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Ideas</span><span class="arrow">→</span>Working Solutions</span>
+          <p>Concepts become prototypes, products and services.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">AI Hype</span><span class="arrow">→</span>Useful AI</span>
+          <p>AI is applied where it creates measurable value — and left out where it shouldn't be.</p>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-transition"><span class="from">Handover</span><span class="arrow">→</span>Ownership</span>
+          <p>Someone stays accountable for getting the solution working.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 WHO WE HELP -->
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 03 — Who We Help</div>
+      <div class="section-head reveal">
+        <h2>We work with teams when things stop connecting.</h2>
+        <p>For founders and growing teams building what's next — and discovering that the business around the product needs designing too.</p>
+      </div>
+      <div class="partner-list reveal">
+        <div class="partner-row"><span class="pnum">01</span><span class="arrow">→</span><p>You're growing, but your ways of working haven't caught up</p></div>
+        <div class="partner-row"><span class="pnum">02</span><span class="arrow">→</span><p>Your customer experience is exposing operational problems</p></div>
+        <div class="partner-row"><span class="pnum">03</span><span class="arrow">→</span><p>Your teams have built workarounds around broken processes</p></div>
+        <div class="partner-row"><span class="pnum">04</span><span class="arrow">→</span><p>You're planning an AI initiative but don't know where it belongs</p></div>
+        <div class="partner-row"><span class="pnum">05</span><span class="arrow">→</span><p>You've designed the future state but need help making it real</p></div>
+        <div class="partner-row"><span class="pnum">06</span><span class="arrow">→</span><p>You're launching something important and need design and technology in the same room</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 HOW WE SOLVE -->
+  <section id="help" class="bg-alt">
+    <div class="wrap">
+      <div class="kicker reveal"><span class="dash"></span>// 04 — How We solve</div>
+      <div class="section-head reveal">
+        <h2>See it. Design it. Build it. Live it.</h2>
         <p>Where do you need help? Four simple stages, not a rigid process — choose one, combine a few, or let us take it end-to-end, from research through to shipped software.</p>
       </div>
       <div class="flow-grid reveal">
@@ -576,8 +532,8 @@
           </div>
         </div>
         <div class="flow-card">
-          <span class="flow-num">04 / MAKE IT WORK</span>
-          <h3>Make It Work</h3>
+          <span class="flow-num">04 / LIVE IT</span>
+          <h3>Live</h3>
           <span class="flow-sline">Stay accountable for outcomes</span>
           <p class="flow-desc">We stay involved through delivery and beyond — measuring results and evolving the system as your business changes.</p>
           <div class="flow-tags">
@@ -590,35 +546,15 @@
         </div>
       </div>
       <div class="section-close reveal">
-        <h3>See it. Design it. Build it. Make it work.</h3>
-        <p>ServDesigns brings human-centred design, business, technology and AI together to help you move from an unclear problem to something real, useful and ready to scale.</p>
+        <h3>See it. Design it. Build it. Live it.</h3>
       </div>
     </div>
   </section>
 
-  <!-- WHO WE HELP -->
+  <!-- 05 WHAT WE BRING TO THE TABLE -->
   <section>
     <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 03 — Who We Help</div>
-      <div class="section-head reveal">
-        <h2>We work with teams when things stop connecting.</h2>
-        <p>For founders and growing teams building what's next — and discovering that the business around the product needs designing too.</p>
-      </div>
-      <div class="partner-list reveal">
-        <div class="partner-row"><span class="pnum">01</span><span class="arrow">→</span><p>You're growing, but your ways of working haven't caught up</p></div>
-        <div class="partner-row"><span class="pnum">02</span><span class="arrow">→</span><p>Your customer experience is exposing operational problems</p></div>
-        <div class="partner-row"><span class="pnum">03</span><span class="arrow">→</span><p>Your teams have built workarounds around broken processes</p></div>
-        <div class="partner-row"><span class="pnum">04</span><span class="arrow">→</span><p>You're planning an AI initiative but don't know where it belongs</p></div>
-        <div class="partner-row"><span class="pnum">05</span><span class="arrow">→</span><p>You've designed the future state but need help making it real</p></div>
-        <div class="partner-row"><span class="pnum">06</span><span class="arrow">→</span><p>You're launching something important and need design and technology in the same room</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT WE BRING TO THE TABLE -->
-  <section style="background:var(--paper-2);">
-    <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 04 — What We Bring To The Table</div>
+      <div class="kicker reveal"><span class="dash"></span>// 05 — What We Bring To The Table</div>
       <div class="section-head reveal">
         <h2>Design, business, technology and AI. Most teams keep them separate. We don't.</h2>
       </div>
@@ -655,7 +591,7 @@
         </div>
       </div>
       <div class="pillars-bridge reveal">
-        <svg viewBox="0 0 600 24" preserveAspectRatio="none">
+        <svg viewBox="0 0 600 24" preserveAspectRatio="none" aria-hidden="true">
           <line x1="0" y1="12" x2="600" y2="12" stroke="#e8a93b" stroke-width="1.5"/>
           <circle cx="75" cy="12" r="4" fill="#e8a93b"/>
           <circle cx="225" cy="12" r="4" fill="#e8a93b"/>
@@ -664,45 +600,14 @@
         </svg>
       </div>
       <p class="pillars-statement reveal">One accountable partner instead of four disconnected suppliers.</p>
+      <p class="pillars-sub reveal">ServDesigns brings human-centred design, business, technology and AI together to help you move from an unclear problem to something real, useful and ready to scale.</p>
     </div>
   </section>
 
-  <!-- OUTCOMES -->
-  <section>
-    <div class="wrap">
-      <div class="kicker reveal"><span class="dash"></span>// 05 — What Changes</div>
-      <div class="section-head reveal">
-        <h2>What changes once the system is visible.</h2>
-      </div>
-      <div class="outcomes-list reveal">
-        <div class="outcome-row">
-          <span class="outcome-transition"><span class="from">Fragmented</span><span class="arrow">→</span>Connected</span>
-          <p>Teams understand how the service actually works.</p>
-        </div>
-        <div class="outcome-row">
-          <span class="outcome-transition"><span class="from">Assumptions</span><span class="arrow">→</span>Evidence</span>
-          <p>Decisions are grounded in customer and operational reality.</p>
-        </div>
-        <div class="outcome-row">
-          <span class="outcome-transition"><span class="from">Ideas</span><span class="arrow">→</span>Working Solutions</span>
-          <p>Concepts become prototypes, products and services.</p>
-        </div>
-        <div class="outcome-row">
-          <span class="outcome-transition"><span class="from">AI Hype</span><span class="arrow">→</span>Useful AI</span>
-          <p>AI is applied where it creates measurable value — and left out where it shouldn't be.</p>
-        </div>
-        <div class="outcome-row">
-          <span class="outcome-transition"><span class="from">Handover</span><span class="arrow">→</span>Ownership</span>
-          <p>Someone stays accountable for getting the solution working.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOUNDER -->
+  <!-- 06 FOUNDER -->
   <section id="founder" class="founder-section">
     <div class="wrap">
-      <div class="kicker reveal" style="color:var(--signal);"><span class="dash" style="background:var(--signal);"></span>// 06 — Founder</div>
+      <div class="kicker reveal"><span class="dash"></span>// 06 — Founder</div>
       <div class="founder-intro reveal">
         <h2>Built on real delivery experience, not just a viewpoint.</h2>
       </div>
@@ -726,10 +631,10 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- 07 CTA -->
   <section class="cta-band" id="contact" style="padding:0;">
     <div class="wrap cta-inner">
-      <div class="kicker reveal" style="color:var(--ink);"><span class="dash" style="background:var(--ink);"></span>// 07 — Get In Touch</div>
+      <div class="kicker reveal"><span class="dash"></span>// 07 — Get In Touch</div>
       <h2 class="reveal">Something isn't connecting?</h2>
       <p class="reveal">Tell us what's happening. We'll help you work out what needs to change — and how to make it real.</p>
       <div class="cta-actions reveal">
@@ -757,7 +662,7 @@
         </div>
         <div class="footer-col">
           <h5>Get In Touch</h5>
-          <a href="mailto:hello@servdesigns.com">shweta.amale22@gmail.com</a>
+          <a href="mailto:hello@servdesigns.com">hello@servdesigns.com</a>
           <a href="https://www.linkedin.com/in/shwetaamale/" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
       </div>
@@ -769,7 +674,7 @@
 </footer>
 
 <script>
-  // Sticky header shadow on scroll
+  // Sticky header border on scroll
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 12);
@@ -783,94 +688,19 @@
 
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => io.observe(el));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
 
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Network diagram canvas — "the invisible operational network"
-  (function(){
-    const canvas = document.getElementById('networkCanvas');
-    const ctx = canvas.getContext('2d');
-    const wrap = canvas.parentElement;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const nodes = [
-      {label:'People', x:0.20, y:0.24},
-      {label:'Process', x:0.62, y:0.14},
-      {label:'Technology', x:0.86, y:0.44},
-      {label:'Data', x:0.66, y:0.80},
-      {label:'Decisions', x:0.26, y:0.84},
-      {label:'AI', x:0.09, y:0.52},
-    ];
-    const edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[0,2],[1,3],[2,4],[3,5],[4,0],[5,1]];
-
-    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    function resize(){
-      const rect = wrap.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function pos(n, t){
-      const bob = reducedMotion ? 0 : 1;
-      const px = n.x * w + Math.sin(t*0.0006 + n.x*10) * 7 * bob;
-      const py = n.y * h + Math.cos(t*0.0005 + n.y*10) * 7 * bob;
-      return [px, py];
-    }
-
-    function draw(t){
-      ctx.clearRect(0,0,w,h);
-      const coords = nodes.map(n => pos(n, t));
-
-      // edges
-      edges.forEach(([a,b], i) => {
-        const alpha = reducedMotion ? 0.4 : (0.22 + 0.26 * (0.5 + 0.5*Math.sin(t*0.0009 + i)));
-        ctx.strokeStyle = `rgba(18,32,63,${alpha.toFixed(3)})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(coords[a][0], coords[a][1]);
-        ctx.lineTo(coords[b][0], coords[b][1]);
-        ctx.stroke();
-      });
-
-      // nodes
-      nodes.forEach((n, i) => {
-        const [x,y] = coords[i];
-        const isAI = n.label === 'AI';
-        ctx.beginPath();
-        ctx.arc(x, y, isAI ? 7 : 5.5, 0, Math.PI*2);
-        ctx.fillStyle = isAI ? '#e8a93b' : '#12203f';
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(x, y, isAI ? 13 : 10, 0, Math.PI*2);
-        ctx.strokeStyle = isAI ? 'rgba(232,169,59,0.45)' : 'rgba(18,32,63,0.3)';
-        ctx.stroke();
-
-        ctx.font = '11px "Space Mono", monospace';
-        ctx.fillStyle = '#12203f';
-        ctx.textAlign = x > w*0.7 ? 'right' : (x < w*0.3 ? 'left' : 'center');
-        ctx.fillText(n.label.toUpperCase(), x, y - 16);
-      });
-    }
-
-    if (reducedMotion) {
-      draw(0);
-    } else {
-      function loop(t){ draw(t); requestAnimationFrame(loop); }
-      requestAnimationFrame(loop);
-    }
-  })();
 </script>
 
 </body>
